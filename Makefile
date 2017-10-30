@@ -4,7 +4,7 @@ PDFMIDSUFFIX = .aux -blx.bib .bib .bbl .blg .log .out .run.xml .tex
 all: outline.pdf
 
 outline.tex: outline.md
-	pandoc --biblatex outline.tex -o outline.pdf
+	pandoc --biblatex outline.md -s -o outline.tex
 
 outline.pdf: cleanoutlinepdf outline.tex outline.bib
 	pdflatex outline
