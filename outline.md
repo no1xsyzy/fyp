@@ -1,16 +1,20 @@
 ---
-
+title: 'Outline for Interim Report'
+author: 'Siyuan XU, SBC-14-1014'
+date: 2017-10-30
+biblio-style: 'authoryear-ibid'
+biblio-title: 'Bibliography'
+biblatexoptions:
+  - 'backend=bibtex'
+bibliography:
+  - reactivemanifesto.bib
 ...
-
-% Outline for Interim Report
-% Siyuan XU, SBC-14-1014
-% Oct. 30th, 2017
 
 #Introduction
 
 ## Reactive Manifesto
 
-1. Organizations are building "reactive" systems
+1. Organizations are building "reactive" systems [@reactive_manifesto]
 2. Better for applications nowadays
 3. More flexible, more scalable, more robust, more resilient
 4. There is not very good pattern
@@ -53,5 +57,3 @@ Make a programming language which (is):
 # Plan
 
 \clearpage
-
-# Bibliography
