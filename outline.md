@@ -3,7 +3,7 @@
 ...
 
 % Outline for Interim Report
-% Frank Xu, SBC-14-1014
+% Siyuan XU, SBC-14-1014
 % Oct. 30th, 2017
 
 #Introduction
