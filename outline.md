@@ -12,7 +12,7 @@
 
 1. Organizations are building "reactive" systems
 2. Better for applications nowadays
-3. More flexible, more scalable, more robust
+3. More flexible, more scalable, more robust, more resilient
 4. There is not very good pattern
 5. Using sequential language to create such system sucks
 
@@ -31,11 +31,26 @@
 3. High level languages (Python, JavaScript, etc.) are easy to develop with
 4. But slow in runtime
 
-## Other problems about existing languages
+## Other Problems about Existing Languages
 
 1. (Too) much effort to implement logging or debugging or bug reporting
 2. Almost impossible to reproduce the runtime
 3. Too many hidden traps in common languages
+
+## Aims and Objectives
+
+Make a programming language which (is):
+
+* Uses "reactive" principle
+* Helps to design a "reactive" system
+* Easy to develop
+* Runs fast
+* Built-in logging/debugging
+* Exposes every programming traps
+
+# Literature Review
+
+# Plan
 
 \clearpage
 
