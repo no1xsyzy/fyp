@@ -11,7 +11,7 @@ bibliography:
 csl: iso690-numeric-en.csl
 ...
 
-#Introduction
+# Introduction
 
 ## Reactive Manifesto
 
