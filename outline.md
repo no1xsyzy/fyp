@@ -8,6 +8,7 @@ biblatexoptions:
   - 'backend=bibtex'
 bibliography:
   - reactivemanifesto.bib
+csl: iso690-numeric-en.csl
 ...
 
 #Introduction
