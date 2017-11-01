@@ -17,10 +17,13 @@ csl: iso690-numeric-en.csl
 ## Reactive Manifesto
 
 1. Organizations are building "reactive" systems [@reactive_manifesto]
-3. More flexible, more scalable, more robust, more resilient
-4. There is not very good pattern
-5. Using sequential language to create such system sucks
 2. Better for applications nowadays [@whatisreactiveprogramming]
+3. More flexible
+4. More scalable
+5. More robust
+6. More resilient
+7. There is not very good pattern
+8. Using sequential language to create such system sucks
 
 ## Microservices
 
