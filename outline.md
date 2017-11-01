@@ -8,6 +8,7 @@ biblatexoptions:
   - 'backend=bibtex'
 bibliography:
   - reactivemanifesto.bib
+  - whatisreactiveprogramming.bib
 csl: iso690-numeric-en.csl
 ...
 
@@ -16,10 +17,10 @@ csl: iso690-numeric-en.csl
 ## Reactive Manifesto
 
 1. Organizations are building "reactive" systems [@reactive_manifesto]
-2. Better for applications nowadays
 3. More flexible, more scalable, more robust, more resilient
 4. There is not very good pattern
 5. Using sequential language to create such system sucks
+2. Better for applications nowadays [@whatisreactiveprogramming]
 
 ## Microservices
 
