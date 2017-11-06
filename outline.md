@@ -9,21 +9,20 @@ biblatexoptions:
 bibliography:
   - reactivemanifesto.bib
   - whatisreactiveprogramming.bib
+  - frp.bib
+  - rpvsrs.bib
 csl: iso690-numeric-en.csl
 ...
 
 # Introduction
 
-## Reactive Manifesto
+## Reactive Systems
 
 1. Organizations are building "reactive" systems [@reactive_manifesto]
 2. Better for applications nowadays [@whatisreactiveprogramming]
-3. More flexible
-4. More scalable
-5. More robust
-6. More resilient
-7. There is not very good pattern
-8. Using sequential language to create such system sucks
+3. Responsive, Resilient, Elastic, Message Driven [@rp_vs_rs]
+4. There are not very good patterns
+5. Using sequential language to create such system sucks
 
 ## Microservices
 
