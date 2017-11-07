@@ -1,10 +1,14 @@
-OUTPUTFILES = outline.pdf
+OUTPUTFILES = outline.pdf interim.pdf
+CITATIONS = reactivemanifesto.bib whatisreactiveprogramming.bib frp.bib rpvsrs.bib
 
 .PHONY: all
 all: outline.pdf
 
-outline.pandoc: outline.md reactivemanifesto.bib
+outline.pdf: outline.md $(CITATIONS)
 	pandoc --filter pandoc-citeproc outline.md -s -o outline.pdf
+
+interim.pdf: interim.md $(CITATIONS)
+	pandoc --filter pandoc-citeproc interim.md -s -o interim.pdf
 
 .PHONY: clean cleanall
 clean:
