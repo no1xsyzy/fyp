@@ -1,5 +1,5 @@
 OUTPUTFILES = outline.pdf interim.pdf
-CITATIONS = reactivemanifesto.bib whatisreactiveprogramming.bib frp.bib rpvsrs.bib
+CITATIONS = reactivemanifesto.bib whatisreactiveprogramming.bib frp.bib rpvsrs.bib microservices.bib reactivemicroservice.bib cloudcomputing.bib
 
 .PHONY: all
 all: outline.pdf

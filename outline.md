@@ -11,6 +11,9 @@ bibliography:
   - whatisreactiveprogramming.bib
   - frp.bib
   - rpvsrs.bib
+  - microservices.bib
+  - reactivemicroservice.bib
+  - cloudcomputing.bib
 csl: iso690-numeric-en.csl
 ...
 
@@ -21,16 +24,14 @@ csl: iso690-numeric-en.csl
 1. Organizations are building "reactive" systems [@reactive_manifesto]
 2. Better for applications nowadays [@whatisreactiveprogramming]
 3. Responsive, Resilient, Elastic, Message Driven [@rp_vs_rs]
-4. There are not very good patterns
-5. Using sequential language to create such system sucks
+4. There are not very good languages
 
 ## Microservices
 
-1. Seperating the whole system into small pieces
-2. Takes advantage of reactive systems
-3. "Cloud" (computing, storage, etc.)
+1. Seperating the whole system into small pieces [@what_are_microservices]
+2. Takes advantage of reactive systems [@reactive_microservice]
+3. "Cloud" (computing, storage, etc.) [@cloud_computing]
 4. Easy tools to automatically operations. (Docker, Kubernetes, etc.)
-5. Difficult to design
 
 ## Performance vs Ease
 
