@@ -14,6 +14,14 @@ bibliography:
   - microservices.bib
   - reactivemicroservice.bib
   - cloudcomputing.bib
+  - performance_comparison.bib
+  - why_high_level_slow.bib
+  - haswell_cache_cycles.bib
+  - python_slow_dont_care.bib
+  - scripting.bib
+  - prechelt2000empirical.bib
+  - nanz2015comparative.bib
+  - c_trap_pitfall.bib
 csl: iso690-numeric-en.csl
 ...
 
@@ -35,10 +43,10 @@ csl: iso690-numeric-en.csl
 
 ## Performance vs Ease
 
-1. Low level languages (C, C++, etc.) run fast
+1. Low level languages (C, C++, etc.) run fast [@performance_comparison]
 2. But difficult to develop with
-3. High level languages (Python, JavaScript, etc.) are easy to develop with
-4. But slow in runtime
+3. High level languages (Python, JavaScript, etc.) are easy to develop with [@python_slow_dont_care]
+4. But slow in runtime [@why_high_level_slow] [@haswell_cache_cycles]
 
 ## Other Problems about Existing Languages
 

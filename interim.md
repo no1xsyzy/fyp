@@ -14,6 +14,14 @@ bibliography:
   - microservices.bib
   - reactivemicroservice.bib
   - cloudcomputing.bib
+  - performance_comparison.bib
+  - why_high_level_slow.bib
+  - haswell_cache_cycles.bib
+  - python_slow_dont_care.bib
+  - scripting.bib
+  - prechelt2000empirical.bib
+  - nanz2015comparative.bib
+  - c_trap_pitfall.bib
 csl: iso690-numeric-en.csl
 ...
 
@@ -31,7 +39,7 @@ Reactive systems fits better with today applications in many ways: [@whatisreact
 
 Also, there are many techniques to achieve it. Futures or promises can set up what will be executed next after former result has been retrieved or former operation is completed. Streams can set up flows of data without any coupling behaviour. Dataflow can ensure data change repectively among different parts of system. [@rp_vs_rs]
 
-There haven't been really good languages to write a reactive system. Most popular languages are based on object-oriented programming paradigm, which emphasizes on packing properties and methods in one object, just like how we understand the realworld. Another programming paradigm is called functional programming, which comes from pure mathematics. Neither of them is good for representing data exchanges between parts of the whole application. What's more, trying to build a reactive system in those languages still need sequential codes instead of markups to assign all those parts together.
+There haven't been really good languages to write a reactive system. Most popular languages are based on object-oriented programming paradigm, which emphasizes on packing properties and methods in one object, just like how we understand the realworld. Another programming paradigm is called functional programming, which comes from pure mathematics. Neither of them is good for representing data exchanges between parts of the whole application. What's more, those languages are still imperative language, which need codes to "assign" them together.
 <!-- TODO: citation needed -->
 
 Briefly, reactive systems are good but hard to create.
@@ -54,6 +62,17 @@ Briefly, microservice architecture is a good try to build reactive systems.
 
 ## Performance vs Ease
 
+Lower level languages like C or C++ runs fast than higher level languages such as Python or JavaScript. [@performance_comparison] Cache misses and garbage collection may be the main reason of their slowness. [@why_high_level_slow] For Haswell microarchitecture, reading in RAM is about 50 times slower than reading in level one cache. [@haswell_cache_cycles] Most high level languages are slow because they don't take advantages of caches, and uses expensive garbage collection.
+
+However, ease in development is another issue. First, there is less typing in dynamic typeless languages. [@scripting] Developing in dynamic languages are usually of 2 times the speed of development in static languages. The length of the resulting programs are also of this ratio. [@prechelt2000empirical] Generally, dynamic languages can produce more concise programs. [@nanz2015comparative]
+
 ## Other Problems about Existing Languages
+
+### Traps in Languages
+
+There are many traps in C language. [@c_trap_pitfall] Lexical, syntatic pitfalls, and semantic pitfalls are three types of common pitfalls in many languages. Most of the time, the traps comes from functions that are not pure functions. The word "pure" has meanings in two aspects. In one hand, there is no side effect, i.e., nothing will be changed by pure function. In the other hand, the parameters passed to it are the only factors that will change the output of the function. In other words, the only data exchanges between pure functions and the outside are parameters and returning values.
+<!-- TODO: citation needed -->
+
+Traps are necessary for many programs. A program usually have to change particular files to output the procession result. There is usually display on screen and many other side effects. But what makes things bad is that many traps are just hidden by the language. Pure functions and impure functions are just thrown together and expecting the programmers to remember or investigate documentations of every function and method.
 
 ## Aims and Objectives
