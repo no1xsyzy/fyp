@@ -22,6 +22,8 @@ bibliography:
   - prechelt2000empirical.bib
   - nanz2015comparative.bib
   - c_trap_pitfall.bib
+  - log4c.bib
+  - python_logging.bib
 csl: iso690-numeric-en.csl
 ...
 
@@ -50,9 +52,9 @@ csl: iso690-numeric-en.csl
 
 ## Other Problems about Existing Languages
 
-1. (Too) much effort to implement logging or debugging or bug reporting
-2. Almost impossible to reproduce the runtime
-3. Too many hidden traps in common languages
+1. Too many hidden traps in common languages
+2. (Too) much effort to implement logging or debugging or bug reporting
+3. Almost impossible to reproduce the runtime
 
 ## Aims and Objectives
 

@@ -22,6 +22,8 @@ bibliography:
   - prechelt2000empirical.bib
   - nanz2015comparative.bib
   - c_trap_pitfall.bib
+  - log4c.bib
+  - python_logging.bib
 csl: iso690-numeric-en.csl
 ...
 
@@ -68,11 +70,21 @@ However, ease in development is another issue. First, there is less typing in dy
 
 ## Other Problems about Existing Languages
 
-### Traps in Languages
+### Hidden Traps in Languages
 
 There are many traps in C language. [@c_trap_pitfall] Lexical, syntatic pitfalls, and semantic pitfalls are three types of common pitfalls in many languages. Most of the time, the traps comes from functions that are not pure functions. The word "pure" has meanings in two aspects. In one hand, there is no side effect, i.e., nothing will be changed by pure function. In the other hand, the parameters passed to it are the only factors that will change the output of the function. In other words, the only data exchanges between pure functions and the outside are parameters and returning values.
 <!-- TODO: citation needed -->
 
-Traps are necessary for many programs. A program usually have to change particular files to output the procession result. There is usually display on screen and many other side effects. But what makes things bad is that many traps are just hidden by the language. Pure functions and impure functions are just thrown together and expecting the programmers to remember or investigate documentations of every function and method.
+Traps are necessary for many programs. A program usually have to change particular files to output the procession result. There is usually display on screen and many other side effects. Even in languages famous for its pure function, such as Haskell or Erlang, there is still impure parts. However, what makes it a bad thing is that many traps are just hidden by the language. Pure functions and impure functions are just thrown together and expecting the programmers to remember or investigate documentations of every function and method.
+
+### Too Much Effort to Log
+
+Most programming languages require too much effort to create a log system.
+
+For example, a logging library in C language `log4c` [@log4c] contains 25 files to produce a complete logging library, while logging with this logging library is still complicated. There are extra lines of codes that initiaze and clean up runtime of the library. To make matters worse, logging methods
+
+In python language, logging is usually done with its standard library `logging` [@python_logging], which is designed to be "pythonic". It enhances simplicity while keeps customizability. Logging with this library requires little coding about initiazation. Summarizingly say, there is only one line importing the library, and all other lines with logging library has some actual effect, such as setting up log file path or filter some logs out.
+
+###
 
 ## Aims and Objectives
