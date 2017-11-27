@@ -7,23 +7,7 @@ biblio-title: 'Bibliography'
 biblatexoptions:
   - 'backend=bibtex'
 bibliography:
-  - reactivemanifesto.bib
-  - whatisreactiveprogramming.bib
-  - frp.bib
-  - rpvsrs.bib
-  - microservices.bib
-  - reactivemicroservice.bib
-  - cloudcomputing.bib
-  - performance_comparison.bib
-  - why_high_level_slow.bib
-  - haswell_cache_cycles.bib
-  - python_slow_dont_care.bib
-  - scripting.bib
-  - prechelt2000empirical.bib
-  - nanz2015comparative.bib
-  - c_trap_pitfall.bib
-  - log4c.bib
-  - python_logging.bib
+  - references.bib
 csl: iso690-numeric-en.csl
 ...
 
