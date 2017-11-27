@@ -28,7 +28,7 @@ Also, there are many techniques to achieve it. Futures or promises can set up wh
 There haven't been really good languages to write a reactive system. Most popular languages are based on object-oriented programming paradigm, which emphasizes on packing properties and methods in one object, just like how we understand the realworld. Another programming paradigm is called functional programming, which comes from pure mathematics. Neither of them is good for representing data exchanges between parts of the whole application. What's more, those languages are still imperative language, which need codes to "assign" them together.
 <!-- TODO: citation needed -->
 
-Briefly, reactive systems are good but hard to create.
+Briefly, reactive systems are good in varies of aspects but hard to create.
 
 ## Microservices
 
@@ -52,7 +52,29 @@ Lower level languages like C or C++ runs fast than higher level languages such a
 
 However, ease in development is another issue. First, there is less typing in dynamic typeless languages. [@scripting] Developing in dynamic languages are usually of 2 times the speed of development in static languages. The length of the resulting programs are also of this ratio. [@prechelt2000empirical] Generally, dynamic languages can produce more concise programs. [@nanz2015comparative]
 
-Briefly, there are few programming languages the could runs fast while easy to developing in.
+Briefly, there are few programming languages that can run fast while be easy to develop with.
+
+## Better Workflow
+
+### Modularization
+
+Modularization is important on cooperating programming. Modularization means the program is structured into seperated modules and each part do not wonder other parts. There are three aspects of importance. First, by assigning programmer to module, the programmer will feel responsible for the module of code, which raises the quality. Second, by assigning module to programmer, duplication of effort is prevented. Third, modularization makes the structure and architect of the program clear, which stick to the Keep It Simple Stupid principle and decreases learning cost. [@CathedralBazaar]
+
+To achieve modularization, de-coupling is necessary. A program is never modularized if the codes from one module must depend on the implementation details of another module. Only if the modules are de-coupled, the program is modularized. In object-oriented paradigm, more works should be done to ensure de-coupling. [@mezini2004variability] In reactive paradigm, with message-driven base, the only way to sharing data between codes are message. With message as the only interface between modules, programs are forced to be de-coupled, thus truly modularized.
+
+What's more, it will be essential if splitting modules can be done before programming. The earlier modules are splitted and made clear, the clearer programmers are about their parts. An inevitable problem is that modules are often splitted around a main module. This kind of splitting method usually takes long time.
+
+Briefly, modularization is very import in cooperating programming, but requires much effort to achieve it.
+
+### Premature Efforts
+
+Premature efforts can hardly be good. Premature optimization usually leads to bad workflow. Making something done is more important than making it good. Doing optimizations too early is called premature optimization. Only after the critical code that lags the whole program has been found can we do efficient optimization. [@knuth_1974, vol. 6]
+
+Premature design is also another bad pattern. Programming is more like painting than engineering. [@graham_2004, vol. 2] Making a final design is a dangerous thing because many of the aspects of a problem is made clear in the process of programming. This includes how it works, how its inside communication works and many other things to be decided.
+
+In order to prevent the badnesses of premature efforts, good programming languages must be fully hackable. It must be very easy to tinker something around with this programming language. Even the programming is running, the running process must also be easy to tinker around. There must be time travelling feature, which allows to step back instead of forward, makes debugging easier. There must be hot module replacing, making it possible to change the implementation or even the functionality of a module. Injecting another module at any point should also be possible, since it is easier to patch than fully rewrite the whole module.
+
+Briefly, premature efforts are usually harmful to programming and thereore should be prevented with better programming language.
 
 ## Other Problems about Existing Languages
 
@@ -63,7 +85,7 @@ There are many traps in C language. [@c_trap_pitfall] Lexical, syntatic pitfalls
 
 Traps are necessary for many programs. A program usually have to change particular files to output the procession result. There is usually display on screen and many other side effects. Even in languages famous for its pure function, such as Haskell or Erlang, there is still impure parts. However, what makes it a bad thing is that many traps are just hidden by the language. Pure functions and impure functions are just thrown together and expecting the programmers to remember or investigate documentations of every function and method.
 
-Briefly, many programming languages hide traps and adds indetermination.
+Briefly, many programming languages hide traps and add indetermination.
 
 ### Too Much Effort to Log
 
@@ -73,7 +95,7 @@ For example, a logging library in C language `log4c` [@log4c] contains 25 files 
 
 In python language, logging is usually done with its standard library `logging` [@python_logging], which is designed to be "pythonic". It enhances simplicity while keeps customizability. Logging with this library requires little coding about initiazation. Summarizingly say, there is only one line importing the library, and all other lines with logging library has some actual effect, such as setting up log file path or filter some logs out. But there are still different ways to logging. For example, the famous asynchronous library or framework `tornado` has its own logging system. If you use normal `logging`, the asynchronism will be broken.
 
-Briefly, most existing programming languages are
+Briefly, most existing programming languages are usually hard to log or have too many ways to log.
 
 ### Inability to Reproduce Problems
 
@@ -81,7 +103,52 @@ For most of the programs, it is really difficult to reproduce a runtime. After a
 
 Briefly, most programming languages lack a way to reproduce the runtime.
 
+### Inability to tinker on the fly
+
+Nowadays many interpreted languages are very easy to change. Unlike ancient days with punched cards or teletype, it is very easy to
+
+However, it is still difficult to change them on the fly. By "on the fly", it is meant that when you are debugging or even running the code, you can actually take full control over the runtime status of the program. [@on-the-fly_programming] [@wang2004fly]
+
 ## Aims and Objectives
+
+The aim of this project is to design and implement a new type of programming language, which should meet the following specifications.
+
+### Uses "reactive" principle
+
+Reactive paradigm is useful in different aspects. This will be the main paradigm of this programming language. To use the principle of reactive, this language should be designed as natively message-driven.
+
+### Helps to design a "reactive" system
+
+Reactive systems are difficult to design. With this language, it is easier to design such reactive systems with its native support for the features of reactive paradigm.
+
+### Easy to develop with
+
+This language should use dynamic types to enhance ease in development.
+
+### Runs fast
+
+This is not a prior target. Although it is attracting to have it fast, but it will not be so bad if it is slow.
+
+### Helps to split programs into modules quickly
+
+This feature should be implemented by design. With well design, any splitting of functions will be a subset of available splitting of modules in this language.
+
+### Supports on-the-fly Programming
+
+Primarily, it should be hackable when debugging. As long as the program is changed, the interpreter should read the file again for new program and substitude current one with the new one.
+
+### Exposes all "traps"
+
+Any modules with programming "traps" should be explicitly marked the type of trap.
+
+### Built-in logging/debugging
+
+By adding only one word to the program, the logging will be done automatically.
+
+### Easy to Reproduce Any Runtime Events
+
+If log is printed to file, along with the program, the runtime should be replayable.
+
 
 
 

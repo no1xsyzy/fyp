@@ -34,11 +34,26 @@ csl: iso690-numeric-en.csl
 3. High level languages (Python, JavaScript, etc.) are easy to develop with [@python_slow_dont_care]
 4. But slow in runtime [@why_high_level_slow] [@haswell_cache_cycles]
 
+## Better Workflow
+
+### Modularization
+
+1. Modularization is important in cooperating programming. [@CathedralBazaar]
+2. De-coupling is important in modularization; with object-oriented, de-coupling is not ensured [@mezini2004variability]; with reactive paradigm, de-coupling is ensured.
+3. Modularization before programming.
+
+### Premature Works
+
+1. Premature optimizaiton is not good. [@knuth_1974, vol. 6]
+2. Premature design is not good. [@graham_2004, vol. 2]
+3. Tinker on the fly makes programmer prevents premature optimizaiton and premature design.
+
 ## Other Problems about Existing Languages
 
-1. Too many hidden traps in common languages
-2. (Too) much effort to implement logging or debugging or bug reporting
+1. Too many hidden traps in common languages [@c_trap_pitfall]
+2. (Too) much effort to implement logging or debugging or bug reporting [@log4c] [@python_logging]
 3. Almost impossible to reproduce the runtime
+4. Cannot tinker/hack upon program on the fly [@on-the-fly_programming] [@wang2004fly]
 
 ## Aims and Objectives
 
@@ -46,10 +61,13 @@ Make a programming language which (is):
 
 * Uses "reactive" principle
 * Helps to design a "reactive" system
-* Easy to develop
+* Easy to develop with
 * Runs fast
+* Helps to split programs into modules quickly
+* Supports on-the-fly Programming
+* Exposes all "traps"
 * Built-in logging/debugging
-* Exposes every programming traps
+* Easy to Reproduce Any Runtime Events
 
 # Literature Review
 
