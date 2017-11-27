@@ -52,6 +52,8 @@ Lower level languages like C or C++ runs fast than higher level languages such a
 
 However, ease in development is another issue. First, there is less typing in dynamic typeless languages. [@scripting] Developing in dynamic languages are usually of 2 times the speed of development in static languages. The length of the resulting programs are also of this ratio. [@prechelt2000empirical] Generally, dynamic languages can produce more concise programs. [@nanz2015comparative]
 
+Briefly, there are few programming languages the could runs fast while easy to developing in.
+
 ## Other Problems about Existing Languages
 
 ### Hidden Traps in Languages
@@ -61,14 +63,28 @@ There are many traps in C language. [@c_trap_pitfall] Lexical, syntatic pitfalls
 
 Traps are necessary for many programs. A program usually have to change particular files to output the procession result. There is usually display on screen and many other side effects. Even in languages famous for its pure function, such as Haskell or Erlang, there is still impure parts. However, what makes it a bad thing is that many traps are just hidden by the language. Pure functions and impure functions are just thrown together and expecting the programmers to remember or investigate documentations of every function and method.
 
+Briefly, many programming languages hide traps and adds indetermination.
+
 ### Too Much Effort to Log
 
 Most programming languages require too much effort to create a log system.
 
 For example, a logging library in C language `log4c` [@log4c] contains 25 files to produce a complete logging library, while logging with this logging library is still complicated. There are extra lines of codes that initiaze and clean up runtime of the library. To make matters worse, logging methods
 
-In python language, logging is usually done with its standard library `logging` [@python_logging], which is designed to be "pythonic". It enhances simplicity while keeps customizability. Logging with this library requires little coding about initiazation. Summarizingly say, there is only one line importing the library, and all other lines with logging library has some actual effect, such as setting up log file path or filter some logs out.
+In python language, logging is usually done with its standard library `logging` [@python_logging], which is designed to be "pythonic". It enhances simplicity while keeps customizability. Logging with this library requires little coding about initiazation. Summarizingly say, there is only one line importing the library, and all other lines with logging library has some actual effect, such as setting up log file path or filter some logs out. But there are still different ways to logging. For example, the famous asynchronous library or framework `tornado` has its own logging system. If you use normal `logging`, the asynchronism will be broken.
 
-###
+Briefly, most existing programming languages are
+
+### Inability to Reproduce Problems
+
+For most of the programs, it is really difficult to reproduce a runtime. After a bug or any problems occurred, when reporting it to the developer, users tend to think their environments be either certainties or regardless to the bug. But problems are usually relevant to the environment. For lack of necessary information, developers are usually hard to track down the bug, just because they do not have this kind of bug and they are not able to reproduce it. To make matters worse, users are usually unable to find out all the relevant environments. Free (libre) or open source software eliminate this issue by making the source code software accessible to users. They can track down the bug by themselves. If they can know how the bug occur by themselves, they can help software developers to deal with problems. But this approach requires one assumption that users, at least users who are able to reproduce the problem, know how to problem. However, the truth is just opposite. Most users do not know about programming.
+
+Briefly, most programming languages lack a way to reproduce the runtime.
 
 ## Aims and Objectives
+
+
+
+\clearpage
+
+# References
