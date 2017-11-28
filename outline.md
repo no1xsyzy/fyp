@@ -60,7 +60,7 @@ csl: iso690-numeric-en.csl
 Make a programming language which (is):
 
 * Uses "reactive" principle
-* Helps to design a "reactive" system
+* Helps to design "reactive" systems
 * Easy to develop with
 * Runs fast
 * Helps to split programs into modules quickly

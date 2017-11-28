@@ -103,51 +103,51 @@ For most of the programs, it is really difficult to reproduce a runtime. After a
 
 Briefly, most programming languages lack a way to reproduce the runtime.
 
-### Inability to tinker on the fly
+### Inability to Tinker on the Fly
 
-Nowadays many interpreted languages are very easy to change. Unlike ancient days with punched cards or teletype, it is very easy to
+Nowadays many interpreted languages are very easy to change. Unlike the compiled languages, it is very easy to change the content of a script file and rerun the whole software.
 
-However, it is still difficult to change them on the fly. By "on the fly", it is meant that when you are debugging or even running the code, you can actually take full control over the runtime status of the program. [@on-the-fly_programming] [@wang2004fly]
+However, it is still difficult to change them on the fly. By "on the fly", it is meant that when you are debugging or even running the code, you can actually take full control over the runtime status of the program. [@on-the-fly_programming] [@wang2004fly] There are a few frameworks that allow on-the-fly programming and achieve it by a technique called hot module replacing. This technique mainly depends on splitting the code into different modules.
 
 ## Aims and Objectives
 
 The aim of this project is to design and implement a new type of programming language, which should meet the following specifications.
 
-### Uses "reactive" principle
+### Uses "Reactive" Principle
 
-Reactive paradigm is useful in different aspects. This will be the main paradigm of this programming language. To use the principle of reactive, this language should be designed as natively message-driven.
+As discussed above, reactive paradigm is useful in different aspects. This paradigm is going to be the main paradigm of this programming language. To use the principle of reactive, this language should be designed as natively message-driven. With basic layer of this language is message-driven,
 
-### Helps to design a "reactive" system
+### Helps to Design "Reactive" Systems
 
-Reactive systems are difficult to design. With this language, it is easier to design such reactive systems with its native support for the features of reactive paradigm.
+Reactive systems are difficult to design. With this language, it should be easier to design such reactive systems with its native support for the features of reactive paradigm.
 
-### Easy to develop with
+### Easy to Develop With
 
-This language should use dynamic types to enhance ease in development.
+This language should use dynamic types to enhance ease in development. What's mroe, the structure of program written in this language should be very clear.
 
-### Runs fast
+### Runs Fast
 
-This is not a prior target. Although it is attracting to have it fast, but it will not be so bad if it is slow.
+This is not a prior target. Although it is attracting to have it fast, but it will not be so bad if it is slow. More importantly, it will be more an issue about the implementation than the language design.
 
 ### Helps to split programs into modules quickly
 
-This feature should be implemented by design. With well design, any splitting of functions will be a subset of available splitting of modules in this language.
+This feature should be done with design. With well design, any splitting of functions will be a subset of available splitting of modules in this language. In other words, one is able to split the functions and divide them into modules without any detailed consideration.
 
 ### Supports on-the-fly Programming
 
-Primarily, it should be hackable when debugging. As long as the program is changed, the interpreter should read the file again for new program and substitude current one with the new one.
+First, it should be hackable when debugging. As long as the program is changed, the interpreter should read the file again for new program and substitude current one with the new one.
 
 ### Exposes all "traps"
 
-Any modules with programming "traps" should be explicitly marked the type of trap.
+Any modules with programming "traps" should be explicitly marked the type of trap. Since traps are needed in every program, at least all traps should be stated clearly. The kind of trap should be part of the program.
 
 ### Built-in logging/debugging
 
-By adding only one word to the program, the logging will be done automatically.
+By adding only one word to the program, the logging will be done automatically. If more logging features are required, it should be also easy to set up.
 
 ### Easy to Reproduce Any Runtime Events
 
-If log is printed to file, along with the program, the runtime should be replayable.
+With some type of runtime recording method is applied, along with the program, the runtime should be replayable.
 
 
 
