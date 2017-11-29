@@ -15,6 +15,14 @@ toc-depth: 3
 
 # Introduction
 
+Argument about the best programming language have been existing for a long time. [@nanz2015comparative] However, The best programming language should change over time as a result of progress in hardware. [@graham_2004, chap. 11] Trends nowadays shows that more and more dynamic languages are being used and they are less complaint about its slowness. Then what is rest if all preconceptions of language are banished and all efficiency bounds are removed? That will be a challenging question.
+
+However, there are some aspects that is very probably unchanged or even more highlighted after years of evolution. The first point of attention should be learning curve. Requirements for skilled programmers are becoming stronger and stronger. In other word, it is essential that a programming is easy to learn and to use. Second point of analysis may be less useless concerns. With the growth in complexity and scale of system to be built, if the connections between different parts in the system keeps working like an inseperable, coherent whole, the system will quickly become unmaintainable. The last part may be code reusing. It is a waste of human resource to invent the wheel again. So it is a good and obvious approach to improve efficiency by code reusing.
+
+Focusing on the above aspects, it is possible to make a really best language. Along with understandings of recent trends of languages and programming, a more future-oriented language can be designed and implemented. Balance between removing prejudice on language and considering recent trends should also be considered carefully.
+
+# Literature Review
+
 ## Reactive Systems
 
 Nowadays, organizations of different industries and fields are building systems with similar proception, which is called "reactive". [@reactive_manifesto]

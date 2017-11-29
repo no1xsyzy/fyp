@@ -15,6 +15,8 @@ toc-depth: 2
 
 # Introduction
 
+# Literature Review
+
 ## Reactive Systems
 
 1. Organizations are building "reactive" systems [@reactive_manifesto]
@@ -70,8 +72,6 @@ Make a programming language which (is):
 * Exposes all "traps"
 * Built-in logging/debugging
 * Easy to Reproduce Any Runtime Events
-
-# Literature Review
 
 # Plan
 
