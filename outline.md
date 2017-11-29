@@ -22,14 +22,15 @@ toc-depth: 2
 1. Organizations are building "reactive" systems [@reactive_manifesto]
 2. Better for applications nowadays [@whatisreactiveprogramming]
 3. Responsive, Resilient, Elastic, Message Driven [@rp_vs_rs]
-4. There are not very good languages
+4. There are not very good languages [@oop] [@functional_programming]
 
 ## Microservices
 
 1. Seperating the whole system into small pieces [@what_are_microservices]
 2. Takes advantage of reactive systems [@reactive_microservice]
 3. "Cloud" (computing, storage, etc.) [@cloud_computing]
-4. Easy tools to automatically operations. (Docker, Kubernetes, etc.)
+4. Easy tools to automatically operations. (Docker, Kubernetes, etc.) [@fink2014docker] [@balalaie2016microservices]
+5. Still not message-driven. [@container_communication]
 
 ## Performance vs Ease
 

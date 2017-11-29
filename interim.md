@@ -35,8 +35,7 @@ Reactive systems fits better with today applications in many ways: [@whatisreact
 
 Also, there are many techniques to achieve it. Futures or promises can set up what will be executed next after former result has been retrieved or former operation is completed. Streams can set up flows of data without any coupling behaviour. Dataflow can ensure data change repectively among different parts of system. [@rp_vs_rs]
 
-There haven't been really good languages to write a reactive system. Most popular languages are based on object-oriented programming paradigm, which emphasizes on packing properties and methods in one object, just like how we understand the realworld. Another programming paradigm is called functional programming, which comes from pure mathematics. Neither of them is good for representing data exchanges between parts of the whole application. What's more, those languages are still imperative language, which need codes to "assign" them together.
-<!-- TODO: citation needed -->
+There haven't been really good languages to write a reactive system. Most popular languages are based on object-oriented programming paradigm, which emphasizes on packing properties and methods in one object, just like how we understand the real world. [@oop] Another programming paradigm is called functional programming, which comes from pure mathematics. [@functional_programming] Neither of them is good for representing data exchanges between parts of the whole application. What's more, those languages are still imperative language, which need codes to "assign" them together.
 
 Briefly, reactive systems are good in varies of aspects but hard to create.
 
@@ -48,11 +47,9 @@ This kind of architecture can take advantage of reactive design. Loose coupling 
 "Cloud" seems to be providing an easy way to solve failures: when one server failed, just delete it and create a new one. It has been greatly affected by microservice architecture and thus is similar to how microservices works.
 An interesting metaphor explains it vividly. Traditional ways to operate a server is like raising a pet, with naming and curing. Cloud servers are like cattles, with numbering and sending to curer. Cloud servers with container and microservices are like chicken, with counting and abandoning. Each is profitting more than the former by intergrating management. [@cloud_computing]
 
-Container technology is an important part of the microservices. With container, the isolation is guaranteed in system level without any understanding to the low-level implementation details. In addition, automatic deployment, scaling and management makes things even easier. Deleting failed server and setting up a new server becomes so easy.
-<!-- TODO: citation needed -->
+Container technology is an important part of the microservices. With container, the isolation is guaranteed in system level without any demand for understanding to the low-level implementation details. [@fink2014docker] In addition, automatic deployment, scaling and management makes all the matters even easier. [@balalaie2016microservices] Deleting failed server and setting up a new server becomes so easy that many cooperations prefer to run their service in that way. [@balalaie2016microservices]
 
-However, those tools will not concern the links between microservices, but just throw all of these parts together and expecting them work as expected. It is not message driven but isolation that is guaranteed. Designs may lead to well isolated but strongly coupled parts. It has advantages of isolation, but still keeps unnecessary complexities in development.
-<!-- TODO: citation needed -->
+However, those tools will not concern the links between microservices, but just throw all of these parts together and expecting them work as expected. [@container_communication] It is not message driven but isolation that is guaranteed. Designs may lead to well isolated but strongly coupled parts. It has advantages of isolation, but still keeps unnecessary complexities in development.
 
 Briefly, microservice architecture is a good try to build reactive systems.
 
@@ -80,11 +77,11 @@ Briefly, modularization is very import in cooperating programming, but requires 
 
 Premature efforts can hardly be good. Premature optimization usually leads to bad workflow. Making something done is more important than making it good. Doing optimizations too early is called premature optimization. Only after the critical code that lags the whole program has been found can we do efficient optimization. [@knuth_1974, vol. 6]
 
-Premature design is also another bad pattern. Programming is more like painting than engineering. [@graham_2004, vol. 2] Making a final design is a dangerous thing because many of the aspects of a problem is made clear in the process of programming. This includes how it works, how its inside communication works and many other things to be decided.
+Premature design is also another bad pattern. Programming is more like painting than engineering. [@graham_2004, chap. 2] Making a final design is a dangerous thing because many of the aspects of a problem is made clear in the process of programming. This includes how it works, how its inside communication works and many other things to be decided.
 
 In order to prevent the badnesses of premature efforts, good programming languages must be fully hackable. It must be very easy to tinker something around with this programming language. Even the programming is running, the running process must also be easy to tinker around. There must be time travelling feature, which allows to step back instead of forward, makes debugging easier. There must be hot module replacing, making it possible to change the implementation or even the functionality of a module. Injecting another module at any point should also be possible, since it is easier to patch than fully rewrite the whole module.
 
-Briefly, premature efforts are usually harmful to programming and thereore should be prevented with better programming language.
+Briefly, premature efforts are usually harmful to programming and therefore should be prevented with better programming language.
 
 ## Other Problems about Existing Languages
 
@@ -159,8 +156,9 @@ By adding only one word to the program, the logging will be done automatically. 
 
 With some type of runtime recording method is applied, along with the program, the runtime should be replayable.
 
+# Plan
 
-
+![](plan.png)
 
 \clearpage
 
