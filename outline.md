@@ -9,6 +9,8 @@ biblatexoptions:
 bibliography:
   - references.bib
 csl: iso690-numeric-en.csl
+toc: true
+toc-depth: 2
 ...
 
 # Introduction
