@@ -169,7 +169,7 @@ With some type of runtime recording method is applied, along with the program, t
 
 # Plan
 
-![](plan.png)
+![Plan for remainder of the project](plan.png){#fig:plan}
 
 \clearpage
 

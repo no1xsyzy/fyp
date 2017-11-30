@@ -1,13 +1,26 @@
-OUTPUTFILES = outline.pdf interim.pdf
+OUTPUTFILES = \
+	outline.pdf \
+	interim.pdf
+
+PANDOC = pandoc
+
+PANDOCPARAM = \
+	-F pandoc-crossref \
+	-F pandoc-citeproc \
+	-H header.tex
+
+ADDITIONALDEPS = \
+	references.bib \
+	header.tex
 
 .PHONY: all
-all: outline.pdf
+all: $(OUTPUTFILES)
 
-outline.pdf: outline.md references.bib header.tex
-	pandoc --filter pandoc-citeproc outline.md -H header.tex -s -o outline.pdf
+outline.pdf: outline.md $(ADDITIONALDEPS)
+	$(PANDOC) $(PANDOCPARAM) outline.md -s -o outline.pdf
 
-interim.pdf: interim.md references.bib header.tex
-	pandoc --filter pandoc-citeproc interim.md -H header.tex -s -o interim.pdf
+interim.pdf: interim.md $(ADDITIONALDEPS)
+	$(PANDOC) $(PANDOCPARAM) interim.md -s -o interim.pdf
 
 .PHONY: clean cleanall
 clean:
