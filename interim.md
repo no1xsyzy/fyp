@@ -27,11 +27,23 @@ geometry:
 
 # Introduction
 
-Argument about the best programming language have been existing for a long time. [@nanz2015comparative] However, The best programming language should change over time as a result of progress in hardware. [@graham_2004, chap. 11] Trends nowadays shows that more and more dynamic languages are being used and they are less complaint about its slowness. Then what is rest if all preconceptions of language are banished and all efficiency bounds are removed? That will be a challenging question.
+Argument about the best programming language have been existing for a long time. [@nanz2015comparative] However, The best programming language should change over time as a result of progress in hardware. [@graham_2004, chap. 11] Trends nowadays shows that more and more dynamic languages are being used and they are less complaint about its slowness. Then how will programming languages be if all preconceptions of language are banished and all efficiency bounds are removed? That will be a challenging question.
 
-However, there are some aspects that is very probably unchanged or even more highlighted after years of evolution. The first point of attention should be learning curve. Requirements for skilled programmers are becoming stronger and stronger. In other word, it is essential that a programming is easy to learn and to use. Second point of analysis may be less useless concerns. With the growth in complexity and scale of system to be built, if the connections between different parts in the system keeps working like an inseperable, coherent whole, the system will quickly become unmaintainable. The last part may be code reusing. It is a waste of human resource to invent the wheel again. So it is a good and obvious approach to improve efficiency by code reusing.
+There are some aspects that is very probably unchanged or even more highlighted after years of evolution. The first point of attention should be learning difficulty. Requirements for skilled programmers are becoming stronger and stronger. In other word, it is essential that a programming is easy to learn and to use. Second point of analysis may be less useless concerns. With the growth in complexity and scale of system to be built, if the connections between different parts in the system keeps working like an inseperable, coherent whole, the system will quickly become unmaintainable. The last part may be code reusing. It is a waste of human resource to invent the wheel again. So it is a good and obvious approach to improve efficiency by code reusing.
 
 Focusing on the above aspects, it is possible to make a really best language. Along with understandings of recent trends of languages and programming, a more future-oriented language can be designed and implemented. Balance between removing prejudice on language and considering recent trends should also be considered carefully.
+
+The aim of the project is to design a future-oriented programming language, which should include the following advantages:
+
+* Uses "reactive" principle
+* Helps to design "reactive" systems
+* Easy to develop with
+* Runs fast
+* Helps to split programs into modules quickly
+* Supports on-the-fly Programming
+* Exposes all "traps"
+* Built-in logging/debugging
+* Easy to reproduce any runtime events
 
 # Literature Review
 
@@ -69,7 +81,7 @@ Briefly, microservice architecture is a good try to build reactive systems.
 
 Lower level languages like C or C++ runs fast than higher level languages such as Python or JavaScript. [@performance_comparison] Cache misses and garbage collection may be the main reason of their slowness. [@why_high_level_slow] For Haswell microarchitecture, reading in RAM is about 50 times slower than reading in level one cache. [@haswell_cache_cycles] Most high level languages are slow because they don't take advantages of caches, and uses expensive garbage collection.
 
-However, ease in development is another issue. First, there is less typing in dynamic typeless languages. [@scripting] Developing in dynamic languages are usually of 2 times the speed of development in static languages. The length of the resulting programs are also of this ratio. [@prechelt2000empirical] Generally, dynamic languages can produce more concise programs. [@nanz2015comparative]
+However, ease in development is another issue. First, there is less typing in dynamic typeless languages. [@scripting] Developing in dynamic languages are usually of 2 times the speed of development in static languages. The length of the resulting programs are also of this ratio. [@prechelt2000empirical] Generally, dynamic languages can produce more concise programs. [@nanz2015comparative] Learning difficulties will be also concerned. It obvious that a programming language that is easy to develop with should be also easy to learn.
 
 Briefly, there are few programming languages that can run fast while be easy to develop with.
 
@@ -118,11 +130,11 @@ Briefly, most existing programming languages are usually hard to log or have too
 
 ### Inability to Reproduce Problems
 
-For most of the programs, it is really difficult to reproduce a runtime. After a bug or any problems occurred, when reporting it to the developer, users tend to think their environments be either certainties or regardless to the bug. But problems are usually relevant to the environment. For lack of necessary information, developers are usually hard to track down the bug, just because they do not have this kind of bug and they are not able to reproduce it. To make matters worse, users are usually unable to find out all the relevant environments. Free (libre) or open source software eliminate this issue by making the source code software accessible to users. They can track down the bug by themselves. If they can know how the bug occur by themselves, they can help software developers to deal with problems. But this approach requires one assumption that users, at least users who are able to reproduce the problem, know how to problem. However, the truth is just opposite. Most users do not know about programming.
+For most of the programs, it is really difficult to reproduce a runtime. After a bug or any problems occurred, when reporting it to the developer, users tend to think their environments be either certainties or regardless to the bug. But problems are usually relevant to the environment. For lack of necessary information, developers are usually hard to track down the bug, just because they do not have this kind of bug and they are not able to reproduce it. To make matters worse, users are usually unable to find out all the relevant environments. Free (libre) or open source software eliminate this issue by making the source code software accessible to users. [@CathedralBazaar] They can track down the bug by themselves. If they can know how the bug occur by themselves, they can help software developers to deal with problems. But this approach requires one assumption that users, at least users who are able to reproduce the problem, know how to problem. However, the truth is just opposite. Most users do not know about programming.
 
 Briefly, most programming languages lack a way to reproduce the runtime.
 
-### Inability to Tinker on the Fly
+### Inability to Change the Program on the Fly
 
 Nowadays many interpreted languages are very easy to change. Unlike the compiled languages, it is very easy to change the content of a script file and rerun the whole software.
 
@@ -169,6 +181,8 @@ By adding only one word to the program, the logging will be done automatically. 
 With some type of runtime recording method is applied, along with the program, the runtime should be replayable.
 
 # Plan
+
+[@Fig:plan] shows the remainder of the project. With a time scale in hours, it seems using 206 hours for this project. There is also a high uncertaintity that several times have been estimated wrong, either more or less. There are also risks that the project could not be completed. The first risk is that time limit cannot be met. Under this circumstance, the specification should be lowered to a lowest part. The second risk is that the specification is that some of the specification could be impossible to achieve. If the corruption of specification list happened, there were two ways to fix. First way is to find a alternative functionality to implement. If first way also failed, then the functionality should be eliminated and some targets should be replaced to make it possible.
 
 ![Plan for remainder of the project](plan.png){#fig:plan}
 
