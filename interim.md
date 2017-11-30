@@ -1,5 +1,6 @@
 ---
-title: 'Interim Report'
+title: 'Design and Implementation of a new Programming Language and a new Programming Paradigm'
+subtitle: 'Interim Report'
 author: 'Siyuan XU, SBC-14-1014'
 date: 2017-10-30
 biblio-style: 'authoryear-ibid'
@@ -11,7 +12,17 @@ bibliography:
 csl: iso690-numeric-en.csl
 toc: true
 toc-depth: 3
+fontsize: 11pt
+linestretch: 1.5
+mainfont: Times New Roman
+geometry:
+  - left=30mm
+  - top=20mm
+  - right=20mm
+  - bottom=30mm
 ...
+
+\clearpage
 
 # Introduction
 

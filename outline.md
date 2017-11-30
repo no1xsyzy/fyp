@@ -10,8 +10,18 @@ bibliography:
   - references.bib
 csl: iso690-numeric-en.csl
 toc: true
-toc-depth: 2
+toc-depth: 3
+fontsize: 11pt
+linestretch: 1.5
+mainfont: Times New Roman
+geometry:
+  - left=30mm
+  - top=20mm
+  - right=20mm
+  - bottom=30mm
 ...
+
+\clearpage
 
 # Introduction
 
@@ -72,7 +82,7 @@ Make a programming language which (is):
 * Supports on-the-fly Programming
 * Exposes all "traps"
 * Built-in logging/debugging
-* Easy to Reproduce Any Runtime Events
+* Easy to reproduce any runtime events
 
 # Plan
 

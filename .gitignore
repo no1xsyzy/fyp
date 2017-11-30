@@ -8,3 +8,4 @@ outline.bib
 *.log
 *.out
 *.run.xml
+!header.tex
