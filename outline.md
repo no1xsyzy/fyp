@@ -1,6 +1,6 @@
 ---
 title: 'Outline for Interim Report'
-author: 'Siyuan XU, SBC-14-1014'
+author: 'Siyuan XU (SBC-14-1014)'
 date: 2017-12-01
 biblio-style: 'authoryear-ibid'
 biblio-title: 'Bibliography'
@@ -86,6 +86,16 @@ Make a programming language which (is):
 * Easy to reproduce any runtime events
 
 # Plan
+
+Risks:
+
+* Time limit cannot be met
+    - Specification should be lowered
+* Some of the specification could be impossible to achieve
+    - Alternative functionality
+    - Change target
+
+![](plan.png){width=20%}
 
 \clearpage
 

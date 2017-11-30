@@ -182,7 +182,7 @@ With some type of runtime recording method is applied, along with the program, t
 
 # Plan
 
-[@Fig:plan] shows the remainder of the project. With a time scale in hours, it seems using 206 hours for this project. There is also a high uncertaintity that several times have been estimated wrong, either more or less. There are also risks that the project could not be completed. The first risk is that time limit cannot be met. Under this circumstance, the specification should be lowered to a lowest part. The second risk is that the specification is that some of the specification could be impossible to achieve. If the corruption of specification list happened, there were two ways to fix. First way is to find a alternative functionality to implement. If first way also failed, then the functionality should be eliminated and some targets should be replaced to make it possible.
+[@Fig:plan] shows the remainder of the project. With a time scale in hours, it seems using 206 hours for this project. There is also a high uncertaintity that several times have been estimated wrong, either more or less. There are also risks that the project could not be completed. The first risk is that time limit cannot be met. Under this circumstance, the specification should be lowered to make time limit met. The second risk is that some of the specification could be impossible to achieve. If the corruption of specification list happened, there were two ways to fix. First way is to find a alternative functionality to implement. If first way also failed, then the functionality should be eliminated and some targets should be replaced to make it possible.
 
 ![Plan for remainder of the project](plan.png){#fig:plan}
 

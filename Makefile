@@ -2,27 +2,38 @@ OUTPUTFILES = \
 	outline.pdf \
 	interim.pdf
 
+HEADERFILES = \
+	header-header-footer.tex \
+	header-titlepage.tex
+
+FILTERS = \
+	pandoc-crossref \
+	pandoc-citeproc \
+
 PANDOC = pandoc
 
-PANDOCPARAM = \
-	-F pandoc-crossref \
-	-F pandoc-citeproc \
-	-H header-header-footer.tex \
-	-H header-titlepage.tex
+PANDOCFILTERPARAMS = \
+	$(addprefix -F ,$(FILTERS))
+
+PANDOCHEADERFILEPARAMS = \
+	$(addprefix -H ,$(HEADERFILES))
+
+PANDOCPARAMS = \
+	$(PANDOCFILTERPARAMS)\
+	$(PANDOCHEADERFILEPARAMS)
 
 ADDITIONALDEPS = \
 	references.bib \
-	header-header-footer.tex \
-	header-titlepage.tex
+	$(HEADERFILES)
 
 .PHONY: all
 all: $(OUTPUTFILES)
 
 outline.pdf: outline.md $(ADDITIONALDEPS)
-	$(PANDOC) $(PANDOCPARAM) outline.md -s -o outline.pdf
+	$(PANDOC) $(PANDOCPARAMS) outline.md -s -o outline.pdf
 
 interim.pdf: interim.md $(ADDITIONALDEPS)
-	$(PANDOC) $(PANDOCPARAM) interim.md -s -o interim.pdf
+	$(PANDOC) $(PANDOCPARAMS) interim.md -s -o interim.pdf
 
 .PHONY: clean cleanall
 clean:
