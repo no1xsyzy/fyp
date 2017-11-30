@@ -9,6 +9,7 @@ biblatexoptions:
 bibliography:
   - references.bib
 csl: iso690-numeric-en.csl
+link-citations: true
 toc: true
 toc-depth: 3
 fontsize: 11pt
