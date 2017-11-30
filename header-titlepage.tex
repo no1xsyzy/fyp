@@ -1,0 +1,32 @@
+\makeatletter
+\renewcommand\maketitle{
+  \thispagestyle{empty}
+  \begin{titlepage}
+    \null\vfil
+    \vspace{60pt}
+
+    \begin{center}
+    \includegraphics[width=200px]{ljmu.jpg}\\
+    {\large\textbf{Liverpool John Moores University}\par}
+    \end{center}
+    \begin{center}
+      \setlength{\parskip}{0pt}
+      \vfill
+      {\huge \bf \@title \par}
+      \vfill
+      {\LARGE by \par}
+      \smallskip
+      {\LARGE \@author \par}
+      {\Large \@date \par}
+      \vfill
+      \bigskip
+      \bigskip
+      \bigskip
+    \end{center}
+    \vfil\null
+
+  \end{titlepage}
+  \clearpage
+}
+
+\makeatother

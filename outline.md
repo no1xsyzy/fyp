@@ -1,7 +1,7 @@
 ---
 title: 'Outline for Interim Report'
 author: 'Siyuan XU, SBC-14-1014'
-date: 2017-10-30
+date: 2017-12-01
 biblio-style: 'authoryear-ibid'
 biblio-title: 'Bibliography'
 biblatexoptions:

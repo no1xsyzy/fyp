@@ -7,11 +7,13 @@ PANDOC = pandoc
 PANDOCPARAM = \
 	-F pandoc-crossref \
 	-F pandoc-citeproc \
-	-H header.tex
+	-H header-header-footer.tex \
+	-H header-titlepage.tex
 
 ADDITIONALDEPS = \
 	references.bib \
-	header.tex
+	header-header-footer.tex \
+	header-titlepage.tex
 
 .PHONY: all
 all: $(OUTPUTFILES)
