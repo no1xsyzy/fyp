@@ -1,4 +1,5 @@
 \usepackage{graphicx}
+
 \makeatletter
 \renewcommand\maketitle{
   \thispagestyle{empty}
@@ -24,10 +25,13 @@
       \bigskip
       \bigskip
     \end{center}
+    \par
+    \@thanks
     \vfil\null
 
   \end{titlepage}
+  \renewcommand{\thanks}[1]{\ignorespaces}
+  \global\let\@thanks\@empty
   \clearpage
 }
-
 \makeatother

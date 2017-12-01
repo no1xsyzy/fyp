@@ -1,7 +1,7 @@
 ---
 title: 'Outline for Interim Report'
-author: 'Siyuan XU (SBC-14-1014)'
-date: 2017-12-01
+author: 'Siyuan XU (SBC-14-1014) \thanks{Supervised by Mr. J.C. Abad}'
+date: 'Friday, December 1st, 2017'
 biblio-style: 'authoryear-ibid'
 biblio-title: 'Bibliography'
 biblatexoptions:
@@ -22,7 +22,7 @@ geometry:
   - bottom=30mm
 ...
 
-\clearpage
+\clearpage\pagestyle{fancy}\setcounter{page}{1}
 
 # Introduction
 
