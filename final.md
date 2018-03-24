@@ -1,8 +1,14 @@
 ---
 title: 'Design and Implementation of a new Programming Language and a new Programming Paradigm'
-subtitle: 'Interim Report'
+subtitle: 'Final Report'
 author: 'Siyuan XU (SBC-14-1014) \thanks{Supervised by Mr. J.C. Abad}'
 date: 'Friday, December 1st, 2017'
+abstract: >
+  There is great necessity of a new language for a reactive based programming.
+  Researches on existing languages and software industry can be used for supporting it.
+  In this project, a new language will be designed and implemented.
+  Its underlying paradigm will be discussed.
+  After the technical informations, the conclusion will be made.
 biblio-style: 'authoryear-ibid'
 biblio-title: 'Bibliography'
 biblatexoptions:
@@ -27,13 +33,43 @@ geometry:
 
 # Introduction
 
-Argument about the best programming language have been existing for a long time. [@nanz2015comparative] However, The best programming language should change over time as a result of progress in hardware. [@graham_2004, chap. 11] Trends nowadays shows that more and more dynamic languages are being used and they are less complaint about its slowness. Then how will programming languages be if all preconceptions of language are banished and all efficiency bounds are removed? That will be a challenging question.
+## Background
 
-There are some aspects that are very probably unchanged or even more highlighted after years of evolution. The first point of attention should be learning difficulty. Requirements for skilled programmers are becoming stronger and stronger. In other words, it is essential that a programming language is easy to learn and to use. Second point of analysis may be less useless concerns. With the growth in complexity and scale of the system to be built, if the connections between different parts of the system keeps working like an inseparable, coherent whole, the system will quickly become unmaintainable. The last part may be code reusing. It is a waste of human resource to invent the wheel again. So it is a great and obvious approach to improve efficiency by code reusing.
+Argument about the best programming language
+    have been existing for a long time. [@nanz2015comparative]
+However, The best programming language should change over time
+    as a result of progress in hardware. [@graham_2004, chap. 11]
+Trends nowadays shows that more and more dynamic languages are being used and
+    there are less complaint about its slowness.
+Then how will programming languages be if
+  all preconceptions of language are banished
+  and all efficiency bounds are removed?
+That will be a challenging question.
 
-Focusing on the above aspects, it is possible to carry out a really best language. Along with understanding of recent trends in languages and programming, a more future-oriented language can be designed and implemented. Balance between removing prejudice on language and considering recent trends should be taken into account carefully.
+There are some aspects that are very probably unchanged
+    or even more highlighted after years of evolution.
+  The first point of attention should be learning difficulty.
+    Requirements for skilled programmers are becoming stronger and stronger.
+    In other words, it is essential that a programming language is easy to learn and to use.
+  Second point of analysis may be less useless concerns.
+    With the growth in complexity and scale of the system to be built,
+    if the connections between different parts of the system
+        keeps working like an inseparable, coherent whole,
+      the system will quickly become unmaintainable.
+  The last point may be code reusing.
+    It is a waste of human resource to invent the wheel again.
+    So it is a great and obvious approach to improve efficiency by code reusing.
 
-The aim of the project is to design a future-oriented programming language, which should include the following advantages:
+Focusing on the aspects above,
+  it is possible to carry out a really best language.
+  Along with understanding of recent trends in languages and programming,
+    a more future-oriented language can be designed and implemented.
+  Balance between removing prejudice on language and considering recent trends
+      should be taken into account carefully.
+
+## Aim
+
+The aim of the project is to design a dataflow-oriented programming language, which should include the following advantages:
 
 * Uses "reactive" principle
 * Helps to design "reactive" systems
@@ -45,43 +81,150 @@ The aim of the project is to design a future-oriented programming language, whic
 * Built-in logging/debugging
 * Easy to reproduce any runtime events
 
-# Literature Review
+## Objectives
+
+This project contains following objectives:
+
+1. Define the lexical and syntax of the language
+2. Design the base of the language
+3. Program the basic interpreter of the language
+4. Write an syntax parser for the interpreter
+5. Make a "hello world" program with this language
+6. Create a simple HTTP server with this language
+
+## Limitations
+
+Due to the time limit of the project,
+  the intepreter cannot be carried out by C language.
+  There is not enough time for a full stack of libraries.
+It is also almost impossible to write a high-efficiency intepreter.
+  The language I choose to implement the new language is slow.
+  There is not much time for optimization.
+
+## Structure
+
+The whole report contains four parts.
+  First part is the introduction as above.
+    It consists of
+      backgrounds,
+      aims and objectives,
+      limitations and
+      the structure outline.
+  The second part is the relevant researches, including
+    comparisons between existing languages,
+    advantage and disadvantages of them,
+    possible improvements of programming languages.
+    These researches will finally point to the necessity of the new language.
+  The third part is the technical content.
+    This part particularly means the statement of the designed language, including
+      the designs of the new language and
+      the implementation of the intepreter.
+  The last part is the conclusion.
+    In this part, the pros and cons of the new language will be discussed.
+    Future improvements will also be discussed.
+
+# Researches
 
 ## Reactive Systems
 
-Currently, organizations of different industries and fields are building systems with similar proception, which is called "reactive". [@reactive_manifesto]
+Currently, organizations of different industries and fields are building systems
+  with similar proception,
+    which is called "reactive". [@reactive_manifesto]
 Reactive systems fits better with today applications in many ways: [@whatisreactiveprogramming]
 
-* Responsive. Users are requiring quicker and quicker response from service. Traditional applications are difficult to guarantee a speedy response.
-* Resilient. The system must endure a level of failure. Failure here means unpredictable problem of the runtime environment, such as lack of memory or network breakdown or natural disasters. Antiquated systems deal with failure by killing the whole system instead of keeping running.
-* Elastic. Reactive systems can react to the load, which means less waste of computing resources and the ability just fits the demand.
-* Message-driven. By using message-driven method, the system is capable of being de-coupled of time and of space. This is the base of resilience and elasticity.
+* Responsive.
+  Users are requiring quicker and quicker response from service.
+  Traditional applications are difficult to guarantee a speedy response.
+* Resilient.
+  The system must endure a level of failure.
+  "Failure" means unpredictable problem of the runtime environment,
+    such as lack of memory or network breakdown or natural disasters.
+  Antiquated systems can only kill the whole system when there is a failure.
+* Elastic.
+  Reactive systems can react to the load, which means
+    less waste of computing resources and
+    the ability just fits the demand.
+* Message-driven.
+  By using message-driven method, the system is capable of being de-coupled of time and of space.
+  This is the base of resilience and elasticity.
 
-Also, there are many techniques to achieve it. Futures or promises can set up what will be executed next after former result has been retrieved or anterior operation is completed. Streams can set up flows of data without any coupling behaviour. Dataflow can ensure data change respectively among different parts of the system. [@rp_vs_rs]
+Also, there are many techniques to achieve it.
+  Futures or promises can set up what will be executed next after
+    former result has been retrieved or anterior operation is completed.
+  Streams can set up flows of data without any coupling behaviour.
+  Dataflow can ensure data change respectively among different parts of the system. [@rp_vs_rs]
 
-There haven't been really nice languages for writing a reactive system. Most popular languages are based on object-oriented programming paradigm, which emphasizes on packing properties and methods in one object, just like how we understand the real world. [@oop] Another programming paradigm is called functional programming, which comes from pure mathematics. [@functional_programming] Neither of them is good for representing data exchanges between parts of the entire application. What's more, those languages are still imperative languages, which need codes to "assign" them together.
+There haven't been really nice languages for writing a reactive system.
+  Most popular languages are based on object-oriented programming paradigm,
+    which emphasizes on packing properties and methods in one object,
+      just like how we understand the real world. [@oop]
+  Another programming paradigm is called functional programming,
+    which comes from pure mathematics. [@functional_programming]
+Neither of them is good for representing data exchanges between parts of the entire application.
+What's more, those languages are still imperative languages,
+  which need codes to "assign" them together.
 
 Briefly, reactive systems are advantageous in varies of aspects but hard to create.
 
 ## Microservices
 
-Microservice architecture is a designing style that assembles a number of loosely-coupled parts, called microservices, into a complete application. [@what_are_microservices]
-This kind of architecture can take advantage of reactive design. Loose coupling means message-driven, which enables use of reactive programming paradigm. Each microservice is isolated so that failure will not result in larger failure, and any failure can be solved by each part. [@reactive_microservice] Isolation is the core concept of the microservices: it is the source of all its advantages.
+Microservice architecture is a designing style that
+  assembles a number of loosely-coupled parts,
+      called microservices,
+    into a complete application. [@what_are_microservices]
+This kind of architecture can take advantage of reactive design.
+  Loose coupling means message-driven,
+    which enables use of reactive programming paradigm.
+  Each microservice is isolated so that failure will not result in larger failure,
+    and any failure can be solved by each part. [@reactive_microservice]
+  Isolation is the core concept of the microservices:
+    it is the source of all its advantages.
 
-"Cloud" seems to be providing an easy way to solve failures: when one server failed, just delete it and create a new one. It has been greatly affected by microservice architecture and thus is similar to how microservices works.
-An interesting metaphor explains it vividly. Traditional ways to operate a server are like raising a pet, with naming and curing. Cloud servers are like cattle, with numbering and sending to curer. Cloud servers with container and microservices are like chicken, with counting and abandoning. Each is profiting more than the former by integrating management. [@cloud_computing]
+"Cloud" seems to be providing an easy way to solve failures:
+  when one server failed, just delete it and create a new one.
+  It has been greatly affected by microservice architecture
+  and thus is similar to how microservices works.
+An interesting metaphor explains it vividly.
+  Traditional ways to operate a server are like raising a pet,
+    with naming and curing.
+  Cloud servers are like cattles,
+    with numbering and sending to curer.
+  Cloud servers with container and microservices are like chicken,
+    with counting and abandoning.
+  Each is profiting more than the former by integrating management. [@cloud_computing]
 
-Container technology is an important part of the microservices. With container, the isolation is guaranteed in system level without any demand for understanding of the low-level implementation details. [@fink2014docker] In addition, automatic deployment, scaling and management makes all the matters even easier. [@balalaie2016microservices] Deleting failed server and setting up a new server becomes so easy that many corporations prefer to run their service in that way. [@balalaie2016microservices]
+Container technology is an important part of the microservices.
+  With container, the isolation is guaranteed in system level
+    without any demand for understanding of the low-level implementation details. [@fink2014docker]
+  In addition, automatic deployment, scaling and management
+      makes all the matters even easier. [@balalaie2016microservices]
+  Deleting failed server and setting up a new server becomes so easy that
+    many corporations prefer to run their service in that way. [@balalaie2016microservices]
 
-However, those tools will not concern the links between microservices, but just throw all of these parts together and expecting them work as expected. [@container_communication] It is not message-driven but isolation that is guaranteed. Designs may lead to well isolated but strongly coupled parts. It has benefits of isolation, but still keeps unnecessary complexities in development.
+However, those tools will not concern the links between microservices, but just
+  throw all of these parts together and
+  expect them work as expected. [@container_communication]
+It is not message-driven but isolation that is guaranteed.
+  Designs may lead to well isolated but strongly coupled parts.
+  It has benefits of isolation, but still keeps possibility of complexities in development.
 
 Briefly, microservice architecture is a good try to build reactive systems.
 
 ## Performance vs Ease
 
-Lower level languages like C or C++ runs fast than higher level languages such as Python or JavaScript. [@performance_comparison] Cache misses and garbage collection may be the main cause of their slowness. [@why_high_level_slow] For Haswell Microarchitecture, reading in RAM is about 50 times slower than reading in level one cache. [@haswell_cache_cycles] Most high level languages are slow because they don't take advantages of caches, and uses expensive garbage collection.
+Lower level languages like C or C++ runs fast than higher level languages such as Python or JavaScript. [@performance_comparison]
+Cache misses and garbage collection may be the main cause of their slowness. [@why_high_level_slow]
+For Haswell Microarchitecture, reading in RAM is about 50 times slower than reading in level one cache. [@haswell_cache_cycles]
+Most high level languages are slow because they don't take advantages of caches, and uses expensive garbage collection. [@why_high_level_slow]
 
-However, ease in development is another issue. First, there is less typing in dynamic typeless languages. [@scripting] Developing in dynamic languages are usually of 2 times the speed of development in static languages. The length of the resulting programs are also of this ratio. [@prechelt2000empirical] Generally, dynamic languages can produce more concise programs. [@nanz2015comparative] Learning difficulties will also be concerned. It obvious that a programming language that is easy to develop with should be also easy to learn.
+However, ease in development is another issue.
+  First, there is less typing in dynamic typeless languages. [@scripting]
+    Developing in dynamic languages are usually
+      of 2 times the speed of development in static languages. [@prechelt2000empirical]
+    The length of the resulting programs are also of this ratio. [@prechelt2000empirical]
+  Generally, dynamic languages can produce more concise programs. [@nanz2015comparative]
+Learning difficulties will also be concerned. It is obvious that
+    a programming language that is easy to develop in should be also easy to learn.
 
 Briefly, there are few programming languages that can run fast while be easy to develop with.
 
@@ -180,12 +323,20 @@ By adding only one word into the program, the logging will be done automatically
 
 With some type of runtime recording method is applied, along with the program, the runtime should be replayable.
 
-# Plan
+# Technical Content
 
-[@Fig:plan] shows the remainder of the project. With a time scale in hours, it seems using 206 hours for this project. There are also a high uncertainties that several times have been estimated wrong, either more or less. There are also risks that the project could not be accomplished. The first risk is that the time limit cannot be met. Under this circumstance, the specification should be lowered to make the time limit met. Another risk is that some of the specification could be impossible to achieve. If such corruption of specification list happened, there were two ways to fix. First way is to find an alternative functionality to implement. If the first way also failed, then the functionality should be eliminated and some targets should be replaced to make it possible.
+## Glossary
 
-![Plan for the remainder of the project](plan.png){#fig:plan}
+## Dataflow Model
 
-\clearpage
+## Turing Completeness
+
+## Hello World Program
+
+## Hello World Server
+
+# Discussion and Conclusions
+
+##
 
 # References
