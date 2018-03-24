@@ -1,6 +1,7 @@
 OUTPUTFILES = \
 	outline.pdf \
-	interim.pdf
+	interim.pdf \
+	final.pdf
 
 HEADERFILES = \
 	header-header-footer.tex \
@@ -35,6 +36,9 @@ outline.pdf: outline.md $(ADDITIONALDEPS)
 
 interim.pdf: interim.md $(ADDITIONALDEPS)
 	$(PANDOC) $(PANDOCPARAMS) interim.md -s -o interim.pdf
+	
+final.pdf: final.md $(ADDITIONALDEPS)
+	$(PANDOC) $(PANDOCPARAMS) final.md -s -o final.pdf
 
 .PHONY: clean cleanall
 clean:
