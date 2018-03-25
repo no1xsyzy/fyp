@@ -327,13 +327,74 @@ With some type of runtime recording method is applied, along with the program, t
 
 ## Glossary
 
-## Dataflow Model
+Module
+
+: A basic interacting unit.
+  The implementation of the Module is not concerned by the top-level.
+
+Message
+
+: A basic package of data transferred.
+  The content of the message will not influence with the transmission.
+
+Message priority
+
+: How prior should the Message be processed.
+  There are four possible priorities numbered from 0 to 3.
+  Smaller numbers represents higher priority.
+  One message can be processed only when there are no messages with higher priority.
+
+Net
+
+: A network that Messages can be transferred on it.
+  One Net can receive Messages from multiple Ports and transmit the data to multiple Ports
+
+Port
+
+: The only interface of a module. It can be configured to be connected with zero or more Net(s).
+
+System
+
+: A combination of Modules and Net that can be run as a whole program.
+
+Stage
+
+: The whole runnig process is divided into four stages: build, const, start, idle.
+  Each corresponds to a priority.
+  These are Messages that put into the message queues before the System starts.
+
+Building Stage
+
+: The first stage of running.
+  In this stage, the configurations are processed and Ports are connected with Nets.
+  A system or some of the Modules can go back into this stage after the configurations are changed.
+
+Const Stage
+
+: The second stage of running.
+  In this stage, Messages are treated as values. It is used for constant values to set.
+  Pure functions should also run in the same priority.
+
+Start Stage
+
+: The stage that marks the starting of the application.
+  One-round programs should run in this stage.
+
+Idle Stage
+
+: This is a stage that marks no messages are in the whole system.
+
+## Dataflow
+
+## Message-driven
 
 ## Turing Completeness
 
-## Hello World Program
+## Applications
 
-## Hello World Server
+### Hello World Program
+
+### Hello World Server
 
 # Discussion and Conclusions
 
