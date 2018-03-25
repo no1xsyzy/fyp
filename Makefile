@@ -7,6 +7,9 @@ HEADERFILES = \
 	header-header-footer.tex \
 	header-titlepage.tex
 
+BEFOREFILES = \
+	before-newpager.tex
+
 FILTERS = \
 	pandoc-crossref \
 	pandoc-citeproc \
@@ -19,15 +22,20 @@ PANDOCFILTERPARAMS = \
 PANDOCHEADERFILEPARAMS = \
 	$(addprefix -H ,$(HEADERFILES))
 
+PANDOCBEFOREFILEPARAMS = \
+	$(addprefix -B ,$(BEFOREFILES))
+
 PANDOCPARAMS = \
 	--number-sections \
 	$(PANDOCFILTERPARAMS)\
-	$(PANDOCHEADERFILEPARAMS)
+	$(PANDOCHEADERFILEPARAMS) \
+	$(PANDOCBEFOREFILEPARAMS)
 
 ADDITIONALDEPS = \
 	references.bib \
 	$(wildcard images/*) \
-	$(HEADERFILES)
+	$(HEADERFILES) \
+	$(BEFOREFILES)
 
 .PHONY: all
 all: $(OUTPUTFILES)
@@ -37,7 +45,7 @@ outline.pdf: outline.md $(ADDITIONALDEPS)
 
 interim.pdf: interim.md $(ADDITIONALDEPS)
 	$(PANDOC) $(PANDOCPARAMS) interim.md -s -o interim.pdf
-	
+
 final.pdf: final.md $(ADDITIONALDEPS)
 	$(PANDOC) $(PANDOCPARAMS) final.md -s -o final.pdf
 

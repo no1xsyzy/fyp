@@ -9,4 +9,5 @@ outline.bib
 *.out
 *.run.xml
 !header-*.tex
+!before-*.tex
 tex2pdf.*
