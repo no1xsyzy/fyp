@@ -184,7 +184,7 @@ With some type of runtime recording method is applied, along with the program, t
 
 [@Fig:plan] shows the remainder of the project. With a time scale in hours, it seems using 206 hours for this project. There are also a high uncertainties that several times have been estimated wrong, either more or less. There are also risks that the project could not be accomplished. The first risk is that the time limit cannot be met. Under this circumstance, the specification should be lowered to make the time limit met. Another risk is that some of the specification could be impossible to achieve. If such corruption of specification list happened, there were two ways to fix. First way is to find an alternative functionality to implement. If the first way also failed, then the functionality should be eliminated and some targets should be replaced to make it possible.
 
-![Plan for the remainder of the project](plan.png){#fig:plan}
+![Plan for the remainder of the project](images/plan.png){#fig:plan}
 
 \clearpage
 

@@ -26,6 +26,7 @@ PANDOCPARAMS = \
 
 ADDITIONALDEPS = \
 	references.bib \
+	$(wildcard images/*) \
 	$(HEADERFILES)
 
 .PHONY: all

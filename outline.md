@@ -95,7 +95,7 @@ Risks:
     - Alternative functionality
     - Change target
 
-![](plan.png){width=20%}
+![](images/plan.png){width=20%}
 
 \clearpage
 
