@@ -344,6 +344,14 @@ Message priority
   Smaller numbers represents higher priority.
   One message can be processed only when there are no messages with higher priority.
 
+Dataflow
+
+: Pure data. Repeating it will not cause any effect.
+
+Event
+
+: Data that is particular. Repeating it will cause the system to work more.
+
 Net
 
 : A network that Messages can be transferred on it.
@@ -363,32 +371,67 @@ Stage
   Each corresponds to a priority.
   These are Messages that put into the message queues before the System starts.
 
-Building Stage
-
-: The first stage of running.
-  In this stage, the configurations are processed and Ports are connected with Nets.
-  A system or some of the Modules can go back into this stage after the configurations are changed.
-
-Const Stage
-
-: The second stage of running.
-  In this stage, Messages are treated as values. It is used for constant values to set.
-  Pure functions should also run in the same priority.
-
-Start Stage
-
-: The stage that marks the starting of the application.
-  One-round programs should run in this stage.
-
-Idle Stage
-
-: This is a stage that marks no messages are in the whole system.
-
 ## Dataflow
 
-## Message-driven
+First kind of message that is transmitted on the net is dataflow.
+  It represents a constant or calculated value.
+  Dataflow should be idempotent.
+    No wonder how many times the same value was transmitted, no state would be changed at all.
+There are different modules to process flowed data.
+
+### Constants
+
+The module `constnum` is shown in [@fig:constnum].
+  It accepts an literal integer from the configuration and outputs it as an integer or a number.
+
+![`constnum` Module](images/constnum.png){#fig:constnum}
+
+Another module `conststr` is shown in [@fig:conststr].
+  It accepts an literal string from the configuration and outputs it as a string.
+
+![`conststr` Module](images/conststr.png){#fig:conststr}
+
+`constnum` and `conststr` can be used to provide a constant value from configuration.
+
+### Calculation
+
+Calculations are basis of mathematics.
+[@Fig:add; @fig:subtract; @fig:multiply; @fig:divide] shows the modules for elementary arithmetics.
+Although in the figures, the inputs of modules in these figures are constant values,
+  they may also be results from other modules.
+
+![`add` Module](images/add.png){#fig:add}
+
+![`subtract` Module](images/subtract.png){#fig:subtract}
+
+![`multiply` Module](images/multiply.png){#fig:multiply}
+
+![`divide` Module](images/divide.png){#fig:divide}
+
+### Structured Data Processing
+
+[@Fig:structure] shows how data are used for creating structured data.
+[@Fig:destructure] shows how structured data are unpacked into data.
+
+![`structure` Module](images/structure.png){#fig:structure}
+
+![`destructure` Module](images/destructure.png){#fig:destructure}
+
+## Events
+
+Despite dataflow, the other kind of messages is event.
+  Events represents for something that is really happening, such as
+    clicking with mouse,
+    pressing a key,
+    receiving data from network, etc.
+  It can also represent the procession of an event.
+  Repeating events means the event is repeated.
+
+###
 
 ## Turing Completeness
+
+## Run Stage
 
 ## Applications
 
