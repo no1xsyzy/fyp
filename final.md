@@ -379,7 +379,7 @@ First kind of message that is transmitted on the net is dataflow.
     No wonder how many times the same value was transmitted, no state would be changed at all.
 There are different modules to process flowed data.
 
-### Constants
+### Constants (`constnum` and `conststr`)
 
 The module `constnum` is shown in [@fig:constnum].
   It accepts an literal integer from the configuration and outputs it as an integer or a number.
@@ -393,12 +393,14 @@ Another module `conststr` is shown in [@fig:conststr].
 
 `constnum` and `conststr` can be used to provide a constant value from configuration.
 
-### Calculation
+### Elementary Arithmetics (`add`, `subtract`, `multiply` and `divide`)
 
-Calculations are basis of mathematics.
+Elementary arithmetics are basis of mathematics.
 [@Fig:add; @fig:subtract; @fig:multiply; @fig:divide] shows the modules for elementary arithmetics.
 Although in the figures, the inputs of modules in these figures are constant values,
   they may also be results from other modules.
+As long as the input is changed, the output will also be changed.
+This forms kind of "binding", but with better illustration.
 
 ![`add` Module](images/add.png){#fig:add}
 
@@ -408,14 +410,51 @@ Although in the figures, the inputs of modules in these figures are constant val
 
 ![`divide` Module](images/divide.png){#fig:divide}
 
-### Structured Data Processing
+### Structured Data Processing (`structure` and `destructure`)
 
 [@Fig:structure] shows how data are used for creating structured data.
+  The input ports are named as `input/<keyname>`,
+      where `<keyname>` is replaced with the name of the key.
+  The output will be formed by making key-value pairs with all inputs.
 [@Fig:destructure] shows how structured data are unpacked into data.
+  It works alike the reverse of `structure` module.
+  The output ports are named with key name.
+Both modules are dataflow modules, and the output will change upon change of input.
 
 ![`structure` Module](images/structure.png){#fig:structure}
 
 ![`destructure` Module](images/destructure.png){#fig:destructure}
+
+### Comparisons (`eq`, `lt`, `gt`, `le`, `ge`, `ne`)
+
+Comparisons is widely used for running flow control.
+  It accept two operands and returns boolean values.
+Common comparisons includes:
+
+* `eq` $a = b$ "equal to"
+* `lt` $a < b$ "less than"
+* `gt` $a > b$ "greater than"
+* `le` $a \leq b$ "less than or equal to"
+* `ge` $a \geq b$ "greater than or equal to"
+* `ne` $a \neq b$ "not equal to"
+
+They all accepts `op1` as $a$ and `op2` as $b$.
+
+### Boolean (`land`, `lor` and `lnot`)
+
+Boolean algebra is the basis of logic.
+  With those three types of operators,
+    all possible truth table is achievable.
+  The truth table for these three boolean algebra is shown in [@tbl:booltruth]
+
+|$a$|$b$|$a \lor b$|$a \land b$|$\lnot a$|
+|---|---|---|---|---|
+|$0$|$0$|$0$|$0$|$1$|
+|$0$|$1$|$1$|$0$|$1$|
+|$1$|$0$|$1$|$0$|$0$|
+|$1$|$1$|$1$|$1$|$0$|
+
+: Truth Table for Basic Boolean Algebra {#tbl:booltruth}
 
 ## Events
 
@@ -427,17 +466,107 @@ Despite dataflow, the other kind of messages is event.
   It can also represent the procession of an event.
   Repeating events means the event is repeated.
 
-###
+### Pulse
+
+Pulse is a special type of event, which contains no payload data,
+    which is represented by an empty object.
+  The meaning of a pulse is determined by on which net it is transmitted.
+    For example, a pulse on the `build` net causes the whole system to build up.
+    A pulse on `end` network will mean the end of program.
+
+### Array as Series (`series` and `parallel`)
+
+The `series` module shown in [@Fig:series] is used for converting arrays into series.
+When this module receives an event with array payload,
+  it will create a series of events, each is one element in the array.
+  To mark the beginning and the end of the array,
+    special events "`#Bgn`" and "`#End`" is transmitted.
+When an object is received instead of an array,
+  the object will be considered as an array of key-value pairs.
+
+[@Fig:parallel] shows the module that does almost the reverse of the `series` module.
+  The only difference is that it will not convert the key-value pairs back into an object.
+
+![`series` Module](images/series.png){#fig:series}
+
+![`parallel` Module](images/parallel.png){#fig:parallel}
+
+### Running Flow Control (`route`)
+
+Controls are used to let program react to data.
+  Through controls, it is possible to process different data.
+Running flow controls of traditional languages contains conditional control and loop control.
+In SINPL, control is processed by `route` module.
+  This modules is different from most of other modules,
+      so it is necessary to describe more about it.
+    When an event is received from port `input`,
+      The former event will be first transmitted according to `choose` value.
+      Then, the payload of the input event will be copied to `test` as output.
+      The priority will be also be raised to 1.
+      After some calculations, the result should be transmitted to `choose` port.
+    But this event can only be transmitted after next event is sent in.
+      To solve this issue, a psuedo-event can be added to input to "push" former event out.
+
+![`route` Module](images/route.png){#fig:route}
 
 ## Turing Completeness
 
+Turing completeness is important in programming languages.
+  With Turing completeness, a programming language can do everything that another language can do.
+To achieve Turing completeness,
+  the programming language must be able to simulate a Turing machine.
+
 ## Run Stage
+
+To make the execution of a program written in SINPL clearer and more controllable,
+    run stage is introduced.
+  Run stage is special pulses on 4 specified net.
+    They are:
+
+* Build stage. The pulse is on `build` net.
+  This stage represents the building procedure of a program.
+    At build stage, configurations are resolved and nets are connected.
+* Const stage. The pulse is on `const` net.
+  This stage represents the constant values are set up.
+  As mentioned above, calculations are in the same priority.
+* Start stage. The pulse is on `start` net.
+  This stage represents the start up of the program.
+    Servers can bind to the ports at this stage.
+* Idle stage. The pulse is on `idle` net.
+  This stage will occur forever.
+
+## Details of Implementation
 
 ## Applications
 
+To demonstrate the new programming language, two applications are used.
+
 ### Hello World Program
 
+This program should do these procedures one by one:
+
+1. Print a string "Hello World!"
+2. Exit
+
+```
+write input=data then=end
+conststr out=data data="Hello World!"
+```
+
 ### Hello World Server
+
+This program should work as following:
+
+1. Start an HTTP server at all interfaces on port 80.
+2. Keeps listening port 80.
+3. On receiving any request, respond with a string "Hello World!".
+
+```
+http-server @0.0.0.0:80 solve=solve
+write input=data on=solve then=closer
+conststr out=data data="Hello World!"
+close on=closer
+```
 
 # Discussion and Conclusions
 
