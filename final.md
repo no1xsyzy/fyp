@@ -29,6 +29,10 @@ geometry:
   - bottom=30mm
 ...
 
+\listoffigures
+
+\listoftables
+
 \clearpage\pagestyle{fancy}\setcounter{page}{1}
 
 # Introduction
@@ -95,11 +99,11 @@ This project contains following objectives:
 ## Limitations
 
 Due to the time limit of the project,
-  the intepreter cannot be carried out by C language.
+  the intepreter cannot be carried out with C language.
   There is not enough time for a full stack of libraries.
 It is also almost impossible to write a high-efficiency intepreter.
-  The language I choose to implement the new language is slow.
-  There is not much time for optimization.
+  The existing language I chose for implementing the new language is slow.
+  There is not much time for optimization, either.
 
 ## Structure
 
@@ -327,6 +331,12 @@ With some type of runtime recording method is applied, along with the program, t
 
 ## Glossary
 
+SINPL
+
+: Name for the new-designed language.
+  It represents for "SINPL Is Not Progamming Language" and
+  contains the hope that this language will be very simple.
+
 Module
 
 : A basic interacting unit.
@@ -505,7 +515,7 @@ In SINPL, control is processed by `route` module.
       The priority will be also be raised to 1.
       After some calculations, the result should be transmitted to `choose` port.
     But this event can only be transmitted after next event is sent in.
-      To solve this issue, a psuedo-event can be added to input to "push" former event out.
+      To solve this issue, a pseudo-event can be added to input to "push" former event out.
 
 ![`route` Module](images/route.png){#fig:route}
 
@@ -513,8 +523,12 @@ In SINPL, control is processed by `route` module.
 
 Turing completeness is important in programming languages.
   With Turing completeness, a programming language can do everything that another language can do.
-To achieve Turing completeness,
-  the programming language must be able to simulate a Turing machine.
+However, there is not enough time to design a turing complete language or to prove it.
+    with a selected set of modules.
+  The main limit exists because of the non-imperative structure.
+    It is more difficult to program like "do something then something then something"
+  So, the language can be extended with Python
+    so that the language can guarantee turing completeness as Python is.
 
 ## Run Stage
 
@@ -526,16 +540,46 @@ To make the execution of a program written in SINPL clearer and more controllabl
 * Build stage. The pulse is on `build` net.
   This stage represents the building procedure of a program.
     At build stage, configurations are resolved and nets are connected.
+    Before build stage, all modules have only the `build` net connect to the `build` port.
+
 * Const stage. The pulse is on `const` net.
   This stage represents the constant values are set up.
   As mentioned above, calculations are in the same priority.
+
 * Start stage. The pulse is on `start` net.
   This stage represents the start up of the program.
     Servers can bind to the ports at this stage.
+
 * Idle stage. The pulse is on `idle` net.
   This stage will occur forever.
 
 ## Details of Implementation
+
+Since I choosed to make the language extensible with Python,
+  it is obvious that I am using Python to implement this language.
+In order to lesser the time so as to fit time limit, I used Object-Oriented Programming.
+
+The first object is `Module`, which is an abstract of module.
+  All methods which names start with `p_` is a pipe method.
+    They will be called when corresponding pipe has received an event or a dataflow.
+  A predefined class property `pliner` is used for quick configurations.
+
+Next packing is `Structure`, which is an abstract of system.
+  It contains zero or more modules, although it is meaningless to have zero modules.
+  It can process a message with its `procMsg` method.
+
+Next packing is `RunState`, which represents the currect status of a system.
+  It contains a structure as well as a message queue.
+  When its `runnext` (run next) method is called,
+    Earliest message of the highest available priority will be processed using the structure in it.
+
+## Lexical Analyzer
+
+Since I am focusing on the intepreter core, I chose to make the lexical analyzer simple.
+It is implemented with `shlex` library,
+    which is a simple and incomplete lexical analyzer for POSIX shell.
+  However, it will be useful enough for this simple lexical analyzer.
+<!-- TODO: more about lexical analyzer -->
 
 ## Applications
 
@@ -548,9 +592,19 @@ This program should do these procedures one by one:
 1. Print a string "Hello World!"
 2. Exit
 
-```
+[@Lst:hw-sinpl] shows the program written in literal SINPL.
+For comparison, a program for same usage written with Python is shown in [@lst:hw-py].
+The program in sinpl is one line longer with literal writing.
+However, it will be almost same if a better lexical analyzer is used.
+In that case, the program can be written in one line like `conststr "Hello World!"|write`.
+
+```{#lst:hw-sinpl caption="Hello World Program Written in SINPL Literal"}
 write input=data then=end
 conststr out=data data="Hello World!"
+```
+
+```{#lst:hw-py .python caption="Hello World Program Written in Python"}
+print "Hello World"
 ```
 
 ### Hello World Server
@@ -561,15 +615,115 @@ This program should work as following:
 2. Keeps listening port 80.
 3. On receiving any request, respond with a string "Hello World!".
 
-```
-http-server @0.0.0.0:80 solve=solve
+[@Lst:hwserver-sinpl] shows the program written in literal SINPL.
+For comparison, a program for same usage written with Python is shown in [@lst:hwserver-py].
+The Python program is slightly longer than the SINPL program.
+The program written with SINPL can be even shorter with better laxical analyzer.
+
+```{#lst:hwserver-sinpl caption="Hello World Server Written in SINPL Literal"}
+http_server @0.0.0.0:80 solve=solve
 write input=data on=solve then=closer
 conststr out=data data="Hello World!"
 close on=closer
 ```
 
+```{#lst:hwserver-py .python caption="Hello World Server Written in Python"}
+from flask import Flask
+app = Flask(__name__)
+
+@app.route('/')
+@app.route('/<path:path>')
+def hello_world(path=None):
+    return 'Hello World!'
+
+if __name__ == '__main__':
+    app.run("0.0.0.0", 80)
+```
+
 # Discussion and Conclusions
 
-##
+## Easy for Reactive Applications
+
+As talked above, reactive systems are responsive, resilient, elastic and message-driven.
+  Modules between SINPL language can only communicate with.
+  With this design, the broken instances can be abandoned and created with another instance.
+  Adding more instances for same module can provide better performance for the module.
+    These instances can be distributed among different
+  The language itself will keeps serving required informations as soon as possible.
+    It don't need to wait for parallel parts to complete in order to carry out next job.
+    So it is almost impossible that the program is blocked by some operation
+        while the other operations are able to be performed.
+
+## Enhanced Modularization
+
+With loose binding between modules and highly de-coupled parts of the function,
+  it is easier to achieve modularization with SINPL language.
+After sketching the system, it is possible to cut the system to smaller parts easily.
+Any random cutting will be possible for modularization.
+This enables the system architect not to make detailed analysis on the system before splitting.
+
+<!-- TODO -->
+
+## Inconformity
+
+First part that is not carried out is the injection.
+  This requires higher skills in abstraction.
+  The injection requires an injecting position selector,
+    which is partially carried out but with foreseeable bugs and shortages.
+  And with injection, the easy logging is not working.
+  Also, the in-field programming is not able to work.
+
+Another shortage of the implementation is lack of libraries.
+  It requires years to make a complete bundle of libraries.
+  To solve that, it is allowed to use Python to extend the language and to create libraries.
+  With varies of libraries from Python, it will be easier to build new libraries.
+
+There are also downsides of the language itself.
+  First, the language hightly relies on parallel executing in one process.
+    This kind of functionality requires asynchronous input and output APIs.
+    If the operating system doesn't support asynchronous APIs, like Windows,
+      the performance will fall.
+  What's more, the language cannot control the imperative directions.
+    By emphasizing parallel and dealing with data as soon as possible,
+    It cannot control which code is runned first very well.
+    And controlling it manually will cause performance degradation greatly.
+  In addition, it will seem to be strange to most software engineers.
+    Most software engineers have been familiar with imperative languages.
+    They would feel the new language unfamiliar if it cannot control execution order.
+
+## Future Improvements
+
+First possible improvement is the selector utilities.
+  As long as the selector can work, many other functionalities can work as well,
+    such as injection and automatic logging.
+
+Another improvement can be hot update.
+  As long as the source file is changed,
+    the program should be able to update to new program without any downtime.
+  This can increase availablity greatly.
+
+Libraries can also be an improvement.
+  This will be a long-term work.
+  And I suggest to add modules when demanded.
+  Thus the modules can be optimized for ease in using.
+
+Inspired by Python library Plumbum, it seems also possible to create a DSL in Python
+    by overloading magic methods of Python.
+  It can be described as to write Python like SINPL,
+    or to write SINPL with Python.
+  It will be more.
+
+## Conclusions
+
+In this project, a new programming language and underlying paradigm is analyzed,
+    designed and implemented.
+  This language depends on dataflow and events and can be extended with Python.
+  This language is based on messages between smaller parts. So they can be more
+  It is very easy to create reactive applications with this language.
+
+<!-- TODO: more conclusion -->
+
+\clearpage
 
 # References
+\

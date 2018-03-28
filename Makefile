@@ -5,7 +5,8 @@ OUTPUTFILES = \
 
 HEADERFILES = \
 	header-header-footer.tex \
-	header-titlepage.tex
+	header-titlepage.tex \
+	header-crossref.tex
 
 BEFOREFILES = \
 	before-newpager.tex
