@@ -1,10 +1,10 @@
 ---
 title: 'Design and Implementation of a new Programming Language and a new Programming Paradigm'
 subtitle: 'Final Report'
-author: 'Siyuan XU (SBC-14-1014) \thanks{Supervised by Mr. J.C. Abad}'
+author: 'Siyuan XU (SBC-14-1014, 790726) \thanks{Supervised by Mr. J.C. Abad}'
 date: 'Friday, December 1st, 2017'
 abstract: >
-  There is a great necessity of a new language for a reactive based programming.
+  There is a great necessity of a new language for reactive based programming.
   Analysis of existing languages and software industry can be used for supporting it.
   In this project, a new language will be designed and implemented.
   Its underlying paradigm will be discussed.
@@ -22,6 +22,8 @@ toc-depth: 3
 fontsize: 11pt
 linestretch: 1.5
 mainfont: Times New Roman
+listings: true
+codeBlockCaptions: true
 geometry:
   - left=30mm
   - top=20mm
@@ -267,9 +269,9 @@ Briefly, many programming languages hide traps and add indetermination.
 
 Most programming languages require too much effort to create a log system.
 
-For example, a logging library in C language `log4c` [@log4c] contains 25 files to produce a complete logging library, while logging with this logging library is still complicated. There are extra lines of codes that initialize and clean up runtime of the library. To make matters worse, logging methods
+For example, a logging library in C language "`log4c`" contains 25 files to produce a complete logging library, while logging with this logging library is still complicated.[@log4c] There are extra lines of codes that initialize and clean up runtime of the library. To make matters worse, logging methods
 
-In Python language, logging is usually done with its standard library `logging` [@python_logging], which is designed to be "pythonic". It enhances simplicity while keeps customizability. Logging with this library requires little coding for initialization. Summarizing say, there is only one line importing the library, and all other lines with logging library have some actual effect, such as setting up log file path or filter some logs out. But there are still different ways to log. For instance, the famous asynchronous library or framework `tornado` has its own logging system. If you use normal `logging`, the asynchronism will be broken.
+In Python language, logging is usually done with its standard library "`logging`" [@python_logging], which is designed to be "pythonic". It enhances simplicity while keeps customizability. Logging with this library requires little coding for initialization. Summarizing say, there is only one line importing the library, and all other lines with logging library have some actual effect, such as setting up log file path or filter some logs out. But there are still different ways to log. For instance, the famous asynchronous library or framework "`tornado`" has its own logging system. If you use normal "`logging`", the asynchronism will be broken.
 
 Briefly, most existing programming languages are usually difficult to generate logs or have too many ways to do so.
 
@@ -389,17 +391,17 @@ There are different modules to process flowed data.
 
 ### Constants (`constnum` and `conststr`)
 
-The module `constnum` is shown in [@fig:constnum].
+The module "`constnum`" is shown in [@fig:constnum].
   It accepts a literal integer from the configuration and outputs it as an integer or a number.
 
-![`constnum` Module](images/constnum.png){#fig:constnum}
+!["`constnum`" Module](images/constnum.png){#fig:constnum}
 
-Another module `conststr` is shown in [@fig:conststr].
+Another module "`conststr`" is shown in [@fig:conststr].
   It accepts a literal string from the configuration and outputs it as a string.
 
-![`conststr` Module](images/conststr.png){#fig:conststr}
+!["`conststr`" Module](images/conststr.png){#fig:conststr}
 
-`constnum` and `conststr` can be used to provide a constant value from their configurations.
+"`constnum`" and "`conststr`" can be used to provide a constant value from their configurations.
 
 ### Elementary Arithmetics (`add`, `subtract`, `multiply` and `divide`)
 
@@ -410,28 +412,28 @@ Although in the figures, the inputs of modules in these figures are constant val
 As long as the input is changed, the output will also be changed.
 This forms kind of "binding", but with better illustrations.
 
-![`add` Module](images/add.png){#fig:add}
+!["`add`" Module](images/add.png){#fig:add}
 
-![`subtract` Module](images/subtract.png){#fig:subtract}
+!["`subtract`" Module](images/subtract.png){#fig:subtract}
 
-![`multiply` Module](images/multiply.png){#fig:multiply}
+!["`multiply`" Module](images/multiply.png){#fig:multiply}
 
-![`divide` Module](images/divide.png){#fig:divide}
+!["`divide`" Module](images/divide.png){#fig:divide}
 
 ### Structured Data Processing (`structure` and `destructure`)
 
 [@Fig:structure] shows how data are used for creating structured data.
-  The input ports are named as `input/<keyname>`,
-      where `<keyname>` is replaced with the name of the key.
+  The input ports are named as "`input/<keyname>`",
+      where "`<keyname>`" is replaced with the name of the key.
   The output will be formed by making key-value pairs with all inputs.
 [@Fig:destructure] shows how structured data are unpacked into data.
-  It works like the reverse of `structure` module.
+  It works like the reverse of "`structure`" module.
   The output ports are named with key name.
 Both modules are data flow modules, and the output will change upon change of input.
 
-![`structure` Module](images/structure.png){#fig:structure}
+!["`structure`" Module](images/structure.png){#fig:structure}
 
-![`destructure` Module](images/destructure.png){#fig:destructure}
+!["`destructure`" Module](images/destructure.png){#fig:destructure}
 
 ### Comparisons (`eq`, `lt`, `gt`, `le`, `ge`, `ne`)
 
@@ -439,14 +441,14 @@ Comparisons is widely used for running flow control.
   It accept two operands and returns boolean values.
 Common comparisons includes:
 
-* `eq` $a = b$ "equal to"
-* `lt` $a < b$ "less than"
-* `gt` $a > b$ "greater than"
-* `le` $a \leq b$ "less than or equal to"
-* `ge` $a \geq b$ "greater than or equal to"
-* `ne` $a \neq b$ "not equal to"
+* "`eq`" $a = b$ "equal to"
+* "`lt`" $a < b$ "less than"
+* "`gt`" $a > b$ "greater than"
+* "`le`" $a \leq b$ "less than or equal to"
+* "`ge`" $a \geq b$ "greater than or equal to"
+* "`ne`" $a \neq b$ "not equal to"
 
-They all accepts `op1` as $a$ and `op2` as $b$.
+They all accepts "`op1`" as $a$ and "`op2`" as $b$.
 
 ### Boolean (`land`, `lor` and `lnot`)
 
@@ -456,7 +458,7 @@ Boolean algebra is the basis of logic.
   The truth table for these three boolean algebra is shown in [@tbl:booltruth]
 
 |$a$|$b$|$a \lor b$|$a \land b$|$\lnot a$|
-|---|---|---|---|---|
+|:---:|:---:|:---:|:---:|:---:|
 |$0$|$0$|$0$|$0$|$1$|
 |$0$|$1$|$1$|$0$|$1$|
 |$1$|$0$|$1$|$0$|$0$|
@@ -479,12 +481,12 @@ Despite data flow, the other kind of messages is event.
 Pulse is a special type of event, which contains no payload data,
     which is represented by an empty object.
   The meaning of a pulse is determined by on which net it is transmitted.
-    For example, a pulse on the `build` net causes the whole system to build up.
-    A pulse on `end` network will mean the end of program.
+    For example, a pulse on the "`build`" net causes the whole system to build up.
+    A pulse on "`end`" network will mean the end of program.
 
 ### Array as Series (`series` and `parallel`)
 
-The `series` module shown in [@Fig:series] is used for converting arrays into series.
+The "`series`" module shown in [@Fig:series] is used for converting arrays into series.
 When this module receives an event with array payload,
   it will create a series of events, each is one element in the array.
   To mark the beginning and the end of the array,
@@ -492,30 +494,30 @@ When this module receives an event with array payload,
 When an object is received instead of an array,
   the object will be considered as an array of key-value pairs.
 
-[@Fig:parallel] shows the module that does almost the reverse of the `series` module.
+[@Fig:parallel] shows the module that does almost the reverse of the "`series`" module.
   The only difference is that it will not convert the key-value pairs back into an object.
 
-![`series` Module](images/series.png){#fig:series}
+!["`series`" Module](images/series.png){#fig:series}
 
-![`parallel` Module](images/parallel.png){#fig:parallel}
+!["`parallel`" Module](images/parallel.png){#fig:parallel}
 
 ### Running Flow Control (`route`)
 
 Controls are used to let program react to data.
   Through controls, it is possible to process different data.
 Running flow controls of traditional languages contains conditional control and loop control.
-In SINPL, control is processed by `route` module.
+In SINPL, control is processed by "`route`" module.
   This modules is different from most of other modules,
       so it is necessary to describe more about it.
-    When an event is received from port `input`,
-      The former event will be first transmitted according to `choose` value.
-      Then, the payload of the input event will be copied to `test` as output.
+    When an event is received from port "`input`",
+      The former event will be first transmitted according to "`choose`" value.
+      Then, the payload of the input event will be copied to "`test`" as output.
       The priority will be also be raised to 1.
-      After some calculations, the result should be transmitted to `choose` port.
+      After some calculations, the result should be transmitted to "`choose`" port.
     But this event can only be transmitted after next event is sent in.
       To solve this issue, a pseudo-event can be added to input to "push" former event out.
 
-![`route` Module](images/route.png){#fig:route}
+!["`route`" Module](images/route.png){#fig:route}
 
 ## Turing Completeness
 
@@ -535,20 +537,20 @@ To make the execution of a program written in SINPL clearer and more controllabl
   Run stage is special pulses on 4 specified net.
     They are:
 
-* Build stage. The pulse is on `build` net.
+* Build stage. The pulse is on "`build`" net.
   This stage represents the building procedure of a program.
     At build stage, configurations are resolved and nets are connected.
-    Before build stage, all modules have only the `build` net connect to the `build` port.
+    Before build stage, all modules have only the "`build`" net connect to the "`build`" port.
 
-* Const stage. The pulse is on `const` net.
+* Const stage. The pulse is on "`const`" net.
   This stage represents the constant values are set up.
   As mentioned above, calculations are in the same priority.
 
-* Start stage. The pulse is on `start` net.
+* Start stage. The pulse is on "`start`" net.
   This stage represents the startup of the program.
     Servers can bind to the ports at this stage.
 
-* Idle stage. The pulse is on `idle` net.
+* Idle stage. The pulse is on "`idle`" net.
   It represents the whole program is idle.
   This stage will occur forever.
   As long as there is no message on the net, there will be a new idle message.
@@ -561,7 +563,7 @@ In order to lessen the time so as to fit time limit, I used Object-Oriented Prog
 
 ### Module
 
-Class `Module` is an abstract of module.
+Class "`Module`" is an abstract of module.
 The code below shows definition and the initialization method of the class.
 
 ```{.python .numberLines startFrom="95"}
@@ -574,15 +576,15 @@ class Module(object):
         self.state = None
 ```
 
-Class member `pliner` is used for shortcut configurations.
-Member `structure` is a weak reference proxy to the structure where the module is in.
+Class member "`pliner`" is used for shortcut configurations.
+Member "`structure`" is a weak reference proxy to the structure where the module is in.
   In Python, all objects including classes has a reference count.
     If that count becomes zero, the object will be unreachable,
       which means that it is safe to completely remove the object.
     If strong reference is used here, the module and the structure will keep each other to live.
     By using weak reference, the modules will not keep the structure to exist.
     It becomes easier to manage these modules.
-Member `state` is the state of the modules.
+Member "`state`" is the state of the modules.
   It includes everything of the module that should be recorded.
 
 ```{.python .numberLines startFrom="41"}
@@ -590,7 +592,7 @@ def StateAttribute(entry, default_factory=None):
 ```
 
 ```{.python}
-    # .......
+    .......
 ```
 
 ```{.python .numberLines startFrom="107"}
@@ -598,9 +600,9 @@ def StateAttribute(entry, default_factory=None):
 ```
 
 A state attribute is a state with attribute interface,
-  e.g., `mod.ports` can be used to access all the ports.
-  `entry` of a state attribute marks the key in state.
-  `default_factory` provides a callable that creates the default value for this value.
+  e.g., "`mod.ports`" can be used to access all the ports.
+  "`entry`" of a state attribute marks the key in state.
+  "`default_factory`" provides a callable that creates the default value for this value.
 
 ```{.python .numberLines startFrom="110"}
 def load(self, state):
@@ -640,8 +642,8 @@ The methods above provides persistence.
 ```
 
 Members which names like `p_<port name>` means a port.
-The decorator `wants` will mark the function of port to connect to that port as default.
-`p_build` marks default behaviour in build stage. It calls 6 other functions.
+The decorator "`wants`" will mark the function of port to connect to that port as default.
+"`p_build`" marks default behaviour in build stage. It calls 6 other functions.
 This is for convenience in replacing part of the behaviour.
 
 ```{.python .numberLines startFrom="138"}
@@ -653,7 +655,7 @@ This is for convenience in replacing part of the behaviour.
             del self.positionals
 ```
 
-Method `m_reset` resets the settings.
+Method "`m_reset`" resets the settings.
 By using `with suppress(KeyError)`, any key error is suppressed if that attribute don't exists.
 
 ```{.python .numberLines startFrom="145"}
@@ -676,9 +678,9 @@ By using `with suppress(KeyError)`, any key error is suppressed if that attribut
         del self.confs
 ```
 
-Method `m_procconf` processes the configuration lines.
-  For each line, the longest prefix that is the same as the key as in `pliner` is connected.
-  The corresponding function will be called with the module and the rest value not in `pliner`.
+Method "`m_procconf`" processes the configuration lines.
+  For each line, the longest prefix that is the same as the key as in "`pliner`" is connected.
+  The corresponding function will be called with the module and the rest value not in "`pliner`".
   When the function returns truthy value, the pliner works well,
     so proceed to the next configuration line.
   If no pliner fits, the first equal sign "`=`" will be used to split key and value.
@@ -695,7 +697,7 @@ Method `m_procconf` processes the configuration lines.
                 self.ports[port] = list(func.wants)
 ```
 
-Method `m_solvewants` will detect all ports which
+Method "`m_solvewants`" will detect all ports which
   wants a net by `wants("<net name>")` decorator but
   is not connected to any ports.
 Then the port will be connected with the wanted nets.
@@ -709,7 +711,7 @@ Then the port will be connected with the wanted nets.
                     self.sensitives[net].append(port)
 ```
 
-Method `m_setsensitives` sets sensitive tables as a reverse map of ports
+Method "`m_setsensitives`" sets sensitive tables as a reverse map of ports
   where the port is method.
 Sensitive table is a multi-map from net to ports.
 
@@ -722,7 +724,7 @@ Sensitive table is a multi-map from net to ports.
                 self.feeds.append(port)
 ```
 
-Method `m_setfeeds` sets feeds.
+Method "`m_setfeeds`" sets feeds.
 It contains all ports that is not sensitive of data.
 
 ```{.python .numberLines startFrom="183"}
@@ -731,19 +733,19 @@ It contains all ports that is not sensitive of data.
             self.name = uuid.uuid4()
 ```
 
-Method `m_name` sets the name of the module if the name is absent.
+Method "`m_name`" sets the name of the module if the name is absent.
 
 ### Structure
 
-Next packing is `Structure`, which is an abstract of system structure.
+Next packing is "`Structure`", which is an abstract of system structure.
   It contains zero or more modules, although it is meaningless to have zero modules.
-  It can process a message with its `procMsg` method.
+  It can process a message with its "`procMsg`" method.
 
 ### RunState
 
-Next packing is `RunState`, which represents the current status of a system.
+Next packing is "`RunState`", which represents the current status of a system.
   It contains a structure as well as a message queue.
-  When its `runnext` (run next) method is called,
+  When its "`runnext`" (run next) method is called,
     Earliest message of the highest available priority will be processed using the structure in it.
 
 ### Lexical Analyzer and Syntax Analyzer
@@ -755,14 +757,14 @@ Syntax analyzer is a translator
   from token stream
   to program.
 Since I am focusing on the interpreter core, I chose to make the syntax analyzer simple.
-It is implemented with `shlex` library,
+It is implemented with "`shlex`" library,
     which is a simple and naive lexical analyzer for POSIX shell.
   However, it will be useful enough for this simple lexical analyzer.
 
-Line 15 through 26 in [@lst:main] shows the lexical and syntax analyzer.
-`__main__.py` is run the python module is called.
+Line 15 through 26 in "`__main__.py`" shows the lexical and syntax analyzer.
+"`__main__.py`" is run the python module is called.
 The first parameter from command line is regarded as filename.
-Every line is processed with `shlex.shlex`.
+Every line is processed with "`shlex.shlex`".
 
 ## Applications
 
@@ -787,13 +789,13 @@ conststr out=data data="Hello World!"
 ```
 
 [@Lst:hw-sinpl] contains two lines.
-  The first line creates a `write` module.
-  The second line creates a `conststr` module.
-In the const stage, the string in conststr is supplied to net `data`.
+  The first line creates a "`write`" module.
+  The second line creates a "`conststr`" module.
+In the const stage, the string in conststr is supplied to net "`data`".
 In the start stage, the string is printed to output.
-The `write` module decides its output in the following order:
+The "`write`" module decides its output in the following order:
 
-1. "`writer`", "`writers`" in the message reached port `on`
+1. "`writer`", "`writers`" in the message reached port "`on`"
 2. "`outfiles`" of its own
 3. if neither of above works, standard output is used.
 
@@ -824,8 +826,8 @@ close on=closer
 The program in [@lst:hwserver-sinpl] contains four lines.
   The first line starts an HTTP server in start stage.
     It will bind to port 80 on all interfaces ("`@0.0.0.0:80`")
-    The request reader and response writer is passed in one message to net `solve`.
-  The second line creates a `write` module and writes to the writer from message.
+    The request reader and response writer is passed in one message to net "`solve`".
+  The second line creates a "`write`" module and writes to the writer from message.
   The third line supplies the write module with the string "Hello World".
   The fourth line closes the writer.
 
@@ -951,7 +953,7 @@ The language takes advantage of the strength of Python and principles of reactiv
 
 # Appendix A: Code
 
-```{.python .numberLines #lst:main caption="`__main__.py`"}
+```{.python .numberLines}
 # __main__.py
 
 from .runstate import RunState
@@ -983,7 +985,7 @@ rs.defaultstart()
 AsyncioRunner(rs).run_forever()
 ```
 
-```{.python .numberLines #lst:asynciorunner caption="`asynciorunner.py`"}
+```{.python .numberLines}
 # asynciorunner.py
 
 import asyncio
@@ -1154,7 +1156,7 @@ class http_server(Module):
             return False
 ```
 
-```{.python .numberLines #lst:modules caption="`modules.py`"}
+```{.python .numberLines}
 # modules.py
 """
 overall basic process with modules
@@ -1419,7 +1421,7 @@ class conststr(Module):
     p_out = None
 ```
 
-```{.python .numberLines #lst:runstate caption="`runstate.py`"}
+```{.python .numberLines}
 # runstate.py
 """
 provides a runstate
@@ -1476,7 +1478,7 @@ class RunState:
             self.adds(Msg(net, data, priority))
 ```
 
-```{.python .numberLines #lst:structure caption="`structure.py`"}
+```{.python .numberLines}
 # structure.py
 """
 

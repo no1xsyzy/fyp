@@ -3,13 +3,9 @@ OUTPUTFILES = \
 	interim.pdf \
 	final.pdf
 
-HEADERFILES = \
-	header-header-footer.tex \
-	header-titlepage.tex \
-	header-crossref.tex
+HEADERFILES = $(wildcard header-*.tex)
 
-BEFOREFILES = \
-	before-newpager.tex
+BEFOREFILES = $(wildcard before-*.tex)
 
 FILTERS = \
 	pandoc-crossref \
@@ -28,6 +24,7 @@ PANDOCBEFOREFILEPARAMS = \
 
 PANDOCPARAMS = \
 	--number-sections \
+	--listings \
 	$(PANDOCFILTERPARAMS)\
 	$(PANDOCHEADERFILEPARAMS) \
 	$(PANDOCBEFOREFILEPARAMS)
@@ -49,6 +46,9 @@ interim.pdf: interim.md $(ADDITIONALDEPS)
 
 final.pdf: final.md $(ADDITIONALDEPS)
 	$(PANDOC) $(PANDOCPARAMS) final.md -s -o final.pdf
+
+final.tex: final.md $(ADDITIONALDEPS)
+	$(PANDOC) $(PANDOCPARAMS) final.md -s -o final.tex
 
 .PHONY: clean cleanall
 clean:
