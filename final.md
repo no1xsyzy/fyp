@@ -7,8 +7,10 @@ abstract: >
   There is a great necessity of a new language for reactive based programming.
   Analysis of existing languages and software industry can be used for supporting it.
   In this project, a new language will be designed and implemented.
-  Its underlying paradigm will be discussed.
-  After the technical information, the conclusion will be made.
+  An implementation in Python will also be provided.
+  This language will enhance in modularization by easy module splitting.
+  The message-driven base will make the language easy to understand.
+  Python can also be used for extending the language.
 biblio-style: 'authoryear-ibid'
 biblio-title: 'Bibliography'
 biblatexoptions:
@@ -951,7 +953,7 @@ The language takes advantage of the strength of Python and principles of reactiv
 
 \clearpage
 
-# Appendix A: Code
+# Appendix A: Code {.unnumbered}
 
 ```{.python .numberLines}
 # __main__.py
@@ -1573,4 +1575,3 @@ class Structure:
 \clearpage
 
 # References
-\
